@@ -62,8 +62,9 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Fecha</th>
+                          <th scope="col">Pedido</th>
                           <th scope="col">Cliente</th>
-                          <th scope="col">Detalles</th>
+                          <th scope="col">Empresa</th>
                           <th scope="col">Confirmar pedido</th>        
                         </tr>
                       </thead>
@@ -88,7 +89,7 @@
              <div class="card card-body">
               <div class="row justify-content-center" style="margin-top: 30px;">
                 <div class="col-10">
-                  <table class="table " >
+                  <table lass="table table-hover" id="tablaPedidosPorConfirmar">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
@@ -163,7 +164,7 @@
         </div>
        </section>
 
-        <!--MODAL DETALLES -->
+        <!--MODAL DETALLES LISTA2-->
         <div class="modal fade" id="detailsOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -173,90 +174,65 @@
               </div>
               <div class="modal-body">
                 <div class="row">
+                  <input type="hidden" id="id_pedidoLista2">
                   <div class="col-md-12">
                     <h5>Información del cliente</h5>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="disabledTextInput" class="form-label">Nombre</label>
-                      <input type="text" id="disabledTextInput" class="form-control" placeholder="Ana Olivera Delgado" disabled>
+                      <input type="text" id="nameCliente" class="form-control" placeholder="Ana Olivera Delgado" disabled>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="disabledTextInput" class="form-label">Correo</label>
-                      <input type="text" id="disabledTextInput" class="form-control" placeholder="anita@gmail.com" disabled>
+                      <input type="text" id="email" class="form-control" placeholder="anita@gmail.com" disabled>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="disabledTextInput" class="form-label">Dirección</label>
-                      <input type="text" id="disabledTextInput" class="form-control" placeholder="Av. Universidad 12 col" disabled>
+                      <input type="text" id="address" class="form-control" placeholder="Av. Universidad 12 col" disabled>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="disabledTextInput" class="form-label">Teléfono</label>
-                      <input type="text" id="disabledTextInput" class="form-control" placeholder="7896523" disabled>
+                      <input type="text" id="telefono" class="form-control" placeholder="7896523" disabled>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="disabledTextInput" class="form-label">Empresa</label>
-                      <input type="text" id="disabledTextInput" class="form-control" placeholder="Hoja verde" disabled>
+                      <input type="text" id="empresa" class="form-control" placeholder="Hoja verde" disabled>
                     </div>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="disabledTextInput" class="form-label">fecha de pedido</label>
-                      <input type="date" id="disabledTextInput" class="form-control" disabled>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
+                  <!-- <div class="col-md-12">
                     <h5 class="margen1">Lista de productos</h5>
                   </div>
                   <div class="col-md-6 marginTable">
                     <div class="row justify-content-center" style="margin-top: 30px;">
                       <div class="col-10">
-                        <table class="table " >
+                        <table class="table table-hover" id="tablaPedidosLista2" >
                           <thead>
-                            <tr>
-                              <th scope="col">#</th>
-                              <th scope="col">Nombre</th>
-                              <th scope="col">Cantidad</th>
-                              <th scope="col">Total</th>        
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Amaranto</td>
-                              <td>3</td>
-                              <td>85</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Chía</td>
-                              <td>10</td>
-                              <td>360</td>
-                            </tr>
-                          </tbody>
+                            <tbody></tbody>
                         </table>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
+                  </div> -->
+                  <!-- <div class="col-md-6">
                     <div class="form-group">
                       <label for="disabledTextInput" class="form-label">fecha de pago</label>
                       <input type="date" id="disabledTextInput" class="form-control" disabled>
                     </div>
-                  </div>
-                  <div class="col-md-6">
+                  </div> -->
+                  <!-- <div class="col-md-6">
                     <div class="form-group">
                       <label for="disabledTextInput" class="form-label">Total</label>
                       <input type="number" style="background-color:#fc7c7c;" id="disabledTextInput" class=" form-control " placeholder="486" disabled >
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="modal-footer">
@@ -275,12 +251,13 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form onsubmit="return confirmPedido()">
-                    <div class="row">            
+                  <form action="javascript:void(0);" onsubmit="return registerConfirmarPedido();">
+                    <div class="row">    
+                      <input type="text" id="id_pedidoConfirmar">        
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="disabledTextInput" class="form-label">Fecha de pago</label>
-                          <input type="date" id="disabledTextInput" class="form-control" >
+                          <input type="date" id="datePago" class="form-control" >
                         </div>
                       </div>
                       <div class="text-end">

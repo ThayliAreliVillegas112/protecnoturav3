@@ -36,6 +36,19 @@ router.get('/:id', async (req, res) =>{
     });
 });
 
+
+router.get('/lista2/:id', async (req, res) =>{
+    const { id } = req.params;
+    let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id where status = 2 and p.id = ?', [id]);
+    // SELECT * FROM pedido p inner join client c on p.client_id = c.id where status = 2 and p.id = ?
+    res.json({
+        status: 200,
+        message: "Se ha encontrado el pedido",
+        listPedido: listPedido
+    });
+});
+// SELECT * FROM pedido p inner join client c on p.client_id = c.id inner join detallespedidop d on p.id = d.pedido_id inner join product r on d.product_id = r.id where status = 2 and p.id = 3
+
 router.get('/pedidosDetalles/:id', async (req, res) =>{
     const { id } = req.params;
     let listDetallesPedido = await pool.query('SELECT * FROM detallespedidop WHERE pedido_id = ?', [id]);
@@ -83,6 +96,36 @@ router.post('/createDetalles', async (req, res)=> { // SE VAN REGISTRANDO CADA U
     });
 });
 
+router.post ('/confPedido/:id', async (req, res) =>{ // CAMBIA EL ESTADO DEL PEDIDO A 3
+    const { id } = req.params;
+    const { datePago, status } = req.body;
+    const dp ={
+        datePago, status
+    };
+    // await pool.query('UPDATE pedido SET status = 3 WHERE id = ?', [id]);
+    await pool.query('INSERT INTO pedido SET ? WHERE id = ?',[dp, id]);
+    // UPDATE product SET ? WHERE id = ?
+    res.json({
+        status: 200,
+        message: "Se ha agregado la fecha de pago y cambiado el status a 3",
+        dp: dp
+    });
+});
+
+router.post('/confirmar/:id', async (req, res)=>{
+    const { id } = req.params;
+    // var dateUpdate = new Date().toISOString();
+    const { datePago, status } = req.body;
+
+    const confi = { datePago, status };
+
+     await pool.query('UPDATE pedido SET ? WHERE id = ?', [confi, id]);
+        res.json({
+            status: 200,
+            message: "YA ME CANSEEEEEE",
+            confi: confi
+        });
+});
 
 router.post ('/delete/:id', async (req, res) =>{ // CAMBIA EL ESTADO DEL PEDIDO A 2
     const { id } = req.params;

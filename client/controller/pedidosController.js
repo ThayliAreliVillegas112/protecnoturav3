@@ -5,10 +5,25 @@ const getPedidoById = async id => {
     }).done(res => res);
 };
 
-const getPedidoDetallesById = async id => {
+const getPedido2ById = async id => {
+    return await $.ajax({
+        type: 'GET',
+        url: 'http://localhost:4000/pedido2/' + id
+    }).done(res => res);
+}; 
+
+const getPedidoDetallesById = async id => { // OBTIENE EL ID DEL PEDIDO SELECCIONADO JUNTO CON LA INFORMACIÓN DE SU RESPECTIVO CLIENTE
     return await $.ajax({
         type: 'GET',
         url: 'http://localhost:4000/pedido/pedidosDetalles/' + id
+    }).done(res => res);
+};
+
+const getPedidoClienteById = async id => {
+    // document.getElementById("id_pedidoLista2").value = id;
+    return await $.ajax({
+        type: 'GET',
+        url: 'http://localhost:4000/pedido/lista2/' + id
     }).done(res => res);
 };
 
@@ -18,13 +33,25 @@ const getIdPedido = async id => {
     document.getElementById("id_pedido").value = id;
     getDetallesPedidos1();
 };
-getIdPedido()
+// getIdPedido()
 
 const getIdPedidoCheck = async id => { //obtengo el id del pedidopara hacer el check (cambiar el status a 2)
     document.getElementById("id_checkPedido").value = id;
     console.log(id_checkPedido);
     console.log(document.getElementById("id_checkPedido").value);
 };
+
+const getIdPedidoLista2 = async id => { //obtengo el id del pedidopara hacer el check (cambiar el status a 2)
+    // document.getElementById("id_pedidoConfirmar").value = id;
+    // console.log(id_pedidoConfirmar);
+    // console.log(document.getElementById("id_pedidoConfirmar").value);
+    let product = await getPedidoClienteById(id);
+
+    document.getElementById('id_pedidoConfirmar').value = id;
+    console.log(id_pedidoConfirmar);
+    console.log(document.getElementById("id_pedidoConfirmar").value);
+};
+
 function registerPedido (){
     event.preventDefault();
     const swalWithBootstrapButtons = Swal.mixin({
@@ -117,6 +144,80 @@ if (pedido == "") {
     
 };
 
+
+function registerConfirmarPedido (){
+
+    event.preventDefault();
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    // var id = document.getElementById('id_pedidoConfirmar').value;
+    var id = document.getElementById('id_pedidoConfirmar').value;
+    let datePago = document.getElementById('datePago').value;
+    var status = 3;
+    console.log("si llena el seguimiento");
+    console.log(id);
+    console.log(datePago)
+    console.log(status)
+if (datePago == "") {
+    Swal.fire({
+        title: "Completa el campo FECHA DE PAGO",
+        confirmButtonText: "Aceptar",
+        icon: "error",
+    })
+}else{
+    swalWithBootstrapButtons.fire({
+        title: 'Estás seguro de confirmar el registro?',
+        text: "Te sugerimos que revises la información antes de registrar",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+    }).then ((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:4000/pedido/confirmar/' + id,
+                data: { datePago, status }
+            }).done(res => {
+                console.log(res)
+                if (res.status === 200) {
+                    swalWithBootstrapButtons.fire(
+                        'Se ha registrado el pago exitosamente',
+                        'Ahora deberás confirmar tu pedido',
+                        'success'
+                    )
+                    // let formulario = document.getElementById('formu2'); 
+                    // formulario.reset()
+                    // setTimeout(function() {
+                    //     let refresh = document.getElementById('tablaPedidosPorConfirmar');
+                    //      refresh= location.reload();
+                    //     location.reload(true);
+                    // }, 3000);
+                } else {
+                    Swal.fire({
+                        title: "Hubo un problema al registrar",
+                        confirmButtonText: "Aceptar",
+                        icon: "error",
+                    });
+                }
+            });
+        }{
+            swalWithBootstrapButtons.fire(
+                'Acción cancelada',
+                'No se ha realizado el registro',
+                'error'
+            )
+        }
+    })
+}
+    
+};
 const getPedidos1 = () => { //MUESTRA LA TABLA QUE ESTA EN LA VISTA DE REGISTRAR PEDIDO, ES LA TABLA DONDE SE VAN AGREGANDO LOS PRODUCTOS
     $.ajax({
         type: 'GET',
@@ -152,16 +253,19 @@ const getPedidos2 = () => { //MUESTRA LA PRIMERA TABLA DE LA VISTA ORDERS, ES DE
 
         let listPedido = res.listPedido;
         let table = $("#tablaPedidos2");
-        
         for (let i = 0; i < listPedido.length; i++) {
+            
             table.append(
                 "<tr>" +
                 "<td>" + (i+1) + "</td>" +
                 "<td>" + listPedido[i].dateSolicitud + "</td>" +
+                "<td>" + listPedido[i].pedido + "</td>" +
                 "<td>" + listPedido[i].name + " " + listPedido[i].surname +  " "+ listPedido[i].lastname +"</td>" +
-                "<td>" + '<button onclick="getIdPedido(' + listPedido[i].id + ');" type="button" class="btn btn-primary text-dark" data-bs-toggle="modal" data-bs-target="#detailsOrder"> <i class="fa fa-info infoBtn" aria-hidden="true"></i></button> </td>' +
-                "<td>" + '<button onclick="getIdPedidoCheck(' + listPedido[i].id + ');" type="button" class="btn btn-success iconMargin text-dark" data-bs-toggle="modal" data-bs-target="#confirmOrder"> <i class="fa fa-clipboard-check infoBtn" aria-hidden="true"></i></button> </td>' +
+                "<td>" + listPedido[i].company + "</td>" +
+                // "<td>" + '<button onclick="getInfoDetailsPedido(' + listPedido[i].id + ');" type="button" class="btn btn-primary text-dark" data-bs-toggle="modal" data-bs-target="#detailsOrder"> <i class="fa fa-info infoBtn" aria-hidden="true"></i></button> </td>' +
+                "<td>" + '<button onclick="getIdPedidoLista2(' + listPedido[i].id + ');" type="button" class="btn btn-success iconMargin text-dark" data-bs-toggle="modal" data-bs-target="#confirmOrder"> <i class="fa fa-clipboard-check infoBtn" aria-hidden="true"></i></button> </td>' +
                "</tr>")
+               console.log(listPedido[i].id )
         }
     });
 };
@@ -190,7 +294,7 @@ const getDetallesPedidos1 = (id) => { // SIRVE PARA MOSTRAR LA TABLA DENTRO DEL 
             table.append(
                 "<tr>" +
                 "<td>" + (i+1) + "</td>" +
-                "<td>" + listDetallesPedido[i].name + "</td>" +
+                "<td>" + listDetallesPedido[i].nameProduct + "</td>" +
                 "<td>" + listDetallesPedido[i].cantUnidades + "</td>" +
                 "<td>" + listDetallesPedido[i].price + "</td>" +
                 "<td>" +  precioTotal + "</td>" +
@@ -199,29 +303,6 @@ const getDetallesPedidos1 = (id) => { // SIRVE PARA MOSTRAR LA TABLA DENTRO DEL 
         }
     });
 };
-
-
-// const getDetallesPedidos2 = (id) => {
-//     var id = document.getElementById('id_pedido').value;
-//     // console.log("pruebaaaaa")
-//     // console.log(id)
-//     $.ajax({
-//         type: 'GET',
-//         headers: { "Accept": "application/json" },
-//         url: 'http://localhost:4000/pedido/pedidosDetallesTabla/' + id
-//     }).done(res => {
-//         console.log(res.listDetallesPedido);
-
-//         let listDetallesPedido = res.listDetallesPedido;
-//         // let table = $("#mostrarProductos");
-//         for (let i = 0; i < listDetallesPedido.length; i++) {
-//             let precioTotal = listDetallesPedido[i].price * listDetallesPedido[i].cantUnidades;
-//             // let total = 0;
-//             // total = total + precioTotal;
-//             // console.log(total);
-//         }
-//     });
-// };
 
 
 const registerDetallesPedido  = async id =>{ // Registra los productos en el pedido
@@ -281,13 +362,7 @@ if (product_id == "") {
                     // localStorage.removeItem("precioT");
                     let formulario = document.getElementById('addProduct'); 
                     formulario.reset()
-                    // setTimeout(function() {
-                    //     localStorage.removeItem("precioT");
-                    //     let refresh = document.getElementById('addProduct');
-                    //      refresh= location.reload();
-                         
-                    //     location.reload(true);
-                    // }, 3000);
+                    // $('#detallesPedido'). modal('hide');  //Sirve para cerrar el modal despues de aceptar la eliminación
                 } else {
                     Swal.fire({
                         title: "Hubo un problema al registrar",
@@ -343,7 +418,7 @@ const getSelectProductos = () => { // OBTIENE LOS PEDIDOS EN EL SELECT
         $.each(listProduct, function (i, item) {
             $('#ProductSelect').append($('<option>', { 
                 value: item.id,  //con esta linea guarda en el campo client_id el id y no el nombre como cadena
-                text : item.name
+                text : item.nameProduct
                 
             }));
         });

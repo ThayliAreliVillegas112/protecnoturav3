@@ -15,7 +15,7 @@ const getInfoProduct = async id => {
     var product = await getProductById(id);
     console.log(product);
     var dateRegisterr = new Date(product.listProduct[0].dateRegister).toLocaleDateString(); // Esta linea sirve para que solo muestre la fecha sin el tiempo
-    document.getElementById('nameProduct').value = product.listProduct[0].name;
+    document.getElementById('nameProduct').value = product.listProduct[0].nameProduct;
     document.getElementById('codeBarras').value = product.listProduct[0].codeBarras;
     document.getElementById('gramaje').value = product.listProduct[0].gramaje;
     document.getElementById('stock').value = product.listProduct[0].stock;
@@ -25,15 +25,13 @@ const getInfoProduct = async id => {
     // document.getElementById('photoProduct').value = product.listProduct[0].photoProduct;
     console.log(product);
     console.log("si esta entrando");
-
-
 };
 
 const getInfoUpdateProduct = async id => {
     let product = await getProductById(id);
 
     document.getElementById('id_updateProduct').value = id;
-    document.getElementById('nameProduct_up').value = product.listProduct[0].name;
+    document.getElementById('nameProduct_up').value = product.listProduct[0].nameProduct;
     document.getElementById('codeBarras_up').value = product.listProduct[0].codeBarras;
     document.getElementById('gramaje_up').value = product.listProduct[0].gramaje;
     document.getElementById('stock_up').value = product.listProduct[0].stock;
@@ -60,7 +58,7 @@ const getProduct = () => {
             table.append(
                 "<tr>" +
                 "<td>" + (i+1) + "</td>" +
-                "<td>" + listProduct[i].name + "</td>" +
+                "<td>" + listProduct[i].nameProduct + "</td>" +
                 "<td>" + listProduct[i].stock + "</td>" +
                 "<td>" + '<button onclick="getInfoProduct(' + listProduct[i].id + ');" type="button" class="btn btn-primary text-dark" data-bs-toggle="modal" data-bs-target="#detailsProduct"> <i class="fa fa-info infoBtn" aria-hidden="true"></i></button> </td>' +
                 "<td>" + '<button onclick="getInfoUpdateProduct(' + listProduct[i].id + ');" type="button" class="btn btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#updateProduct"><i class="fa fa-pen" aria-hidden="true"></i></button> </td>' +
@@ -80,7 +78,7 @@ function registerProduct (){
         buttonsStyling: false
     })
     console.log("si entra para el llenado")
-    let name = document.getElementById('nameProductRe').value;
+    let nameProduct = document.getElementById('nameProductRe').value;
     let codeBarras = document.getElementById('codeBarrasRe').value;
     let gramaje = document.getElementById('gramajeRe').value;
     var stock = document.getElementById('stockRe').value;
@@ -89,7 +87,7 @@ function registerProduct (){
     let description = document.getElementById('descriptionRe').value;
     // let photoProduct = document.getElementById('photoProductRe').value;
 
-if (name == "") {
+if (nameProduct == "") {
     Swal.fire({
         title: "Completa el campo NOMBRE",
         confirmButtonText: "Aceptar",
@@ -145,7 +143,7 @@ if (name == "") {
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:4000/product/create',
-                data: { name, codeBarras, gramaje, stock, price, dateRegister, description }
+                data: { nameProduct, codeBarras, gramaje, stock, price, dateRegister, description }
             }).done(res => {
                 console.log(res)
                 if (res.status === 200) {
@@ -188,7 +186,7 @@ function updateProduct (){
     console.log(id);
     console.log("Si entra para hacer los cambios");
     var id = document.getElementById('id_updateProduct').value;
-    let name = document.getElementById('nameProduct_up').value;
+    let nameProduct = document.getElementById('nameProduct_up').value;
     let codeBarras = document.getElementById('codeBarras_up').value;
     let gramaje = document.getElementById('gramaje_up').value;
     let stock = document.getElementById('stock_up').value;
@@ -197,7 +195,7 @@ function updateProduct (){
     // let photoProduct = document.getElementById('photo_up').value;
     console.log(id);
 
-if (name == "") {
+if (nameProduct == "") {
     Swal.fire({
         title: "Completa el campo NOMBRE",
         confirmButtonText: "Aceptar",
@@ -253,7 +251,7 @@ if (name == "") {
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:4000/product/update/' + id,
-                data: { name, codeBarras, gramaje, stock, price, description}
+                data: { nameProduct, codeBarras, gramaje, stock, price, description}
             }).done(res => {
                 console.log(res)
                 if (res.status === 200) {

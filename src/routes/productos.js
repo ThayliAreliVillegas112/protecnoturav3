@@ -26,11 +26,11 @@ router.get('/:id', async (req, res) =>{
 });
 
 router.post('/create', async (req, res)=> {
-    const { name, codeBarras, gramaje, stock , price, dateRegister, description } = req.body;
+    const { nameProduct, codeBarras, gramaje, stock , price, dateRegister, description } = req.body;
     var dateCreated = new Date().toISOString();
     //var dateCreated2 = new Date().toLocaleString();
     const product ={
-        name, codeBarras, gramaje, stock , price, dateRegister: dateCreated, description
+        nameProduct, codeBarras, gramaje, stock , price, dateRegister: dateCreated, description
     };
 
     await pool.query('INSERT INTO product set ?', [product]);
@@ -44,9 +44,9 @@ router.post('/create', async (req, res)=> {
 router.post('/update/:id', async (req, res)=>{
     const { id } = req.params;
     // var dateUpdate = new Date().toISOString();
-    const { name, codeBarras, gramaje, stock , price, dateRegister, description } = req.body;
+    const { nameProduct, codeBarras, gramaje, stock , price, dateRegister, description } = req.body;
 
-    const product = { name, codeBarras, gramaje, stock , price, dateRegister, description };
+    const product = { nameProduct, codeBarras, gramaje, stock , price, dateRegister, description };
 
      await pool.query('UPDATE product SET ? WHERE id = ?', [product, id]);
         res.json({
