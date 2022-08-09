@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=”UTF-8″ />
+        <title>Historial de amaranto reventado</title>
+        <link rel="shortcut icon" href="../assets/img/logo.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.html"><img src="../assets/img/logo.png" width="50" height="50"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="../index.html">Inicio</a>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Productos
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="inventory.html">Lista de productos</a></li>
+                            <li><a class="dropdown-item" href="productRegister.html">Registrar productos</a></li>
+                          </ul>
+                        </li>
+                        <a class="nav-link" href="rawMaterial.html">Materia prima</a>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Procesos
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="flourProcess.html">Harina</a></li>
+                            <li><a class="dropdown-item" href="reventado.html">Reventado</a></li>
+                            <li><a class="dropdown-item" href="mezcla.html">Mezcla</a></li>
+                          </ul>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <section>
+            <div>
+                <a href="reventado.html" class="btn btn-info margen3" role="button" style="float: right;" >Regresar</a>
+            </div>
+            <div>
+                <h3 style="margin-top: 40px; margin-left: 25px">Seguimiento de amaranto reventado <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reventadoRegister" style="width:40px"><i class="fa fa-plus" aria-hidden="true"></i></button> <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#dismiurStock2" style="width:40px"><i class="fa fa-minus" aria-hidden="true"></i></button></h3>
+            </div>
+        </section>
+        <section class="content3">
+          <div class="card" id="cardClientRegister">
+             <div class="card-header headCard " data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+               <h4 class="card-title">Registros</h4>
+             </div>
+             <div lass="collapse" id="collapseExample3">
+               <div class="card card-body">
+   
+                 <div class="row justify-content-center" style="margin-top: 30px;">
+                   <div class="col-10">
+                     <table class="table table-hover" id="tablaReventado" >
+                         <thead>
+                          <div class="input-group">
+                            <div class="form-outline">
+                              <input id="search-focus" type="search" class="form-control" onkeyup="doSearch()" />
+                              <label class="form-label" for="form1">Buscar</label>
+                            </div>
+                            <button type="button" class="btn btn-primary buscar">
+                              <i class="fas fa-search"></i>
+                            </button>
+                          </div>
+                           <tr>
+                             <th scope="col">#</th>
+                             <th scope="col">Fecha</th>
+                             <th scope="col">Detalles</th>                         
+                           </tr>
+                         </thead>
+                         <tbody>
+                         </tbody>
+                       </table>
+                   </div>
+               </div>
+             </div>
+             </div>
+           </div>
+         </section>
+            <hr>
+            <div>
+              <h3 style="margin-top: 40px; margin-left: 25px">Salida de amaranto reventado</h3>
+            </div>
+
+            <section class="content3">
+              <div class="card" id="cardClientRegister">
+                 <div class="card-header headCard " data-bs-toggle="collapse" data-bs-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample2">
+                   <h4 class="card-title">Registros</h4>
+                 </div>
+                 <div lass="collapse" id="collapseExample4">
+                   <div class="card card-body">
+       
+                     <div class="row justify-content-center" style="margin-top: 30px;">
+                       <div class="col-10">
+                         <table class="table table-hover" id="tablaReventadoUsado" >
+                             <thead>
+                              <div class="input-group">
+                                <div class="form-outline">
+                                  <input id="search-focus2" type="search" class="form-control" onkeyup="doSearchUsado2()" />
+                                  <label class="form-label" for="form1">Buscar</label>
+                                </div>
+                                <button type="button" class="btn btn-primary buscar">
+                                  <i class="fas fa-search"></i>
+                                </button>
+                              </div>
+                               <tr>
+                                 <th scope="col">#</th>
+                                 <th scope="col">Fecha</th>
+                                 <th scope="col">Detalles</th>                         
+                               </tr>
+                             </thead>
+                             <tbody>
+                             </tbody>
+                           </table>
+                       </div>
+                   </div>
+                 </div>
+                 </div>
+               </div>
+             </section>
+        <!--MODAL DETALLES LA CANTIDAD DE AMARANTO REVENTADO-->
+        <div class="modal fade" id="detailsReventado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header colorHeadCard">
+                  <h5 class="modal-title">Detalles del proceso</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="disabledTextInput" class="form-label">Materia prima</label>
+                                <input type="text" id="matePrima" class="form-control" disabled placeholder="Amaranto" value="Amaranto">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="disabledTextInput" class="form-label">Cantidad de materia prima (kg)</label>
+                                <input type="number" id="cantMPrima" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="disabledTextInput" class="form-label">Cantidad de reventado (kg)</label>
+                                <input type="number" id="cantAmaReve" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="disabledTextInput" class="form-label">Fecha</label>
+                                <input type="date" id="fechaRe" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="text-end">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                  </form> 
+                </div>           
+              </div>      
+            </div>
+        </div>
+
+
+        <!--MODAL DETALLES LA CANTIDAD DE AMARANTO REVENTADO A USAR-->
+        <div class="modal fade" id="detailsReventadoUsar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header colorHeadCard">
+                <h5 class="modal-title">Detalles de la salida de amaranto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="disabledTextInput" class="form-label">Materia prima</label>
+                              <input type="text" id="matePrima" class="form-control" disabled placeholder="Amaranto" value="Amaranto">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="disabledTextInput" class="form-label">Cantidad (kg) Amaranto a usar</label>
+                              <input type="number" id="amarantoUsar" class="form-control" disabled>
+                          </div>
+                      </div>
+                      <!-- <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="disabledTextInput" class="form-label">Fecha</label>
+                              <input type="date" id="dateRegistro" class="form-control" disabled>
+                          </div>
+                      </div> -->
+                  </div>
+                  <br/>
+                  <div class="text-end">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </form> 
+              </div>           
+            </div>      
+          </div>
+      </div>
+
+        <!--MODAL AGREGAR COMPRA-->
+        <div class="modal fade" id="reventadoRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header colorHeadCard2">
+                  <h5 class="modal-title">Registro de amaranto reventado</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="javascript:void(0);" onsubmit="return registerSegReventado();">
+                    <div class="row">            
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="disabledTextInput" class="form-label">Materia prima</label>
+                          <input type="text" id="disabledTextInput" class="form-control" disabled placeholder="Amaranto" value="Amaranto">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="disabledTextInput" class="form-label">Cantidad de materia prima</label>
+                          <input type="number" id="cantM" class="form-control" >
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="disabledTextInput" class="form-label">Cantidad de amaranto reventado</label>
+                          <input type="number" id="cantAmaReventado" class="form-control">
+                        </div>
+                      </div>                     
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="disabledTextInput" class="form-label">Fecha de elaboración de reventado</label>
+                          <input type="date" id="dateElaboracion" class="form-control" >
+                        </div>
+                      </div>  
+                                          
+                      <div class="text-end marginForm">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-success" >Registrar</button>
+                      </div>
+                    </div>
+                  </form>                
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--MODAL DISMINIUR STOCK DE AMARANTO REVENTADO-->
+        <div class="modal fade" id="dismiurStock2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header colorHeadCard2">
+                <h5 class="modal-title">Amaranto reventado a utilizar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="javascript:void(0);" onsubmit="return registerSegReventadoUsar();">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="disabledTextInput" class="form-label">Materia prima</label>
+                        <input type="text" id="" class="form-control" disabled placeholder="Amaranto" value="Amaranto">
+                      </div>
+                    </div>            
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="disabledTextInput" class="form-label">Cantidad de amaranto a usar</label>
+                        <input type="number" id="amarantoUsar2" class="form-control"  > <!--DEBE DESCONTAR DEL STOCK DE LA CANTIDAD DE MEZCLA-->
+                      </div>
+                    </div>  
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="disabledTextInput" class="form-label">Fecha</label>
+                        <input type="date" id="date" class="form-control"  > 
+                      </div>
+                    </div>                               
+                    <div class="text-end marginForm">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" >Registrar</button>
+                    </div>
+                  </div>
+                </form>                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+        <script src="../controller/reventadoController.js"></script>
+        <script src="../main.js"></script>
+    </body>
+</html>

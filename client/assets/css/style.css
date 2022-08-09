@@ -1,0 +1,171 @@
+.carrousel{
+    font-style: normal
+}
+
+.margen1{
+    margin-top: 25px
+}
+.margen2{
+    margin-top: 90px
+}
+.margen3{
+    margin-right:50px
+}
+.margenImg{
+    display: block;
+    margin: auto;
+}
+
+.containerM{
+    margin-left: 80px;
+    margin-right: 50px;
+    margin-top: 25px
+    
+}
+
+.back{
+    background-color: red;
+}
+
+.marginTable{
+    margin-right: 25px;
+    margin-left: 65px;
+}
+
+.iconMargin{
+    margin-left: 40px;
+}
+
+.iconMargin2{
+    margin-left: 60px;
+}
+
+.marginForm{
+    margin-top: 20px;
+}
+
+.btnPlus{
+    margin-top: 50px;
+}
+
+.fontBadge{
+    font-size: 25px;
+}
+
+.content{
+    margin-left: 35px;
+    margin-right: 35PX;
+    margin-top:120px;
+}
+
+.content2{
+    margin-left: 35px;
+    margin-right: 35PX;
+    margin-top:60px;
+}
+.content3{
+    margin-left: 35px;
+    margin-right: 35PX;
+    margin-top:10px;
+}
+
+.headCard{
+   background: #9dd7a0;
+}
+
+.marginCardB{
+    margin-bottom: 50px;
+}
+
+.colorHeadCard{
+    background: rgb(122, 191, 58);
+    color: white;
+}
+
+.colorHeadCard2{
+    background-color: #f6b70c;
+    color: white;
+}
+
+.content2{
+    margin-left: 85px;
+    margin-right: 45PX;
+}
+
+.tituloIndex{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #ffae17;
+}
+
+.btnMezclas{
+    float: right;
+}
+
+.cardMezclas{
+    background-color: #f4ad0f;
+}
+
+.hrM{
+   align-items: center;
+}
+
+.buscar{
+    height:38px;
+}
+
+.infoBtn{
+    width: 19px;
+}
+/* eSTILO PARA BUSCADOR */
+
+datos {border:1px solid #ccc;padding:10px;font-size:1em;}
+
+        datos tr:nth-child(even) {background:#ccc;}
+
+        datos td {padding:5px;}
+
+        datos tr.noSearch {background:White;font-size:0.8em;}
+
+        datos tr.noSearch td {padding-top:10px;text-align:right;}
+
+        .hide {display:none;}
+
+        .red {color:Red;}
+
+
+
+
+
+          /* form input[type="email"]:required:valid{
+            border:2px solid green;
+            
+           }
+           form input[type="email"]:focus:required:invalid{
+            border:2px solid red;
+           }
+
+           form input[type="text"]:required:valid{
+            border:2px solid green;
+           }
+           form input[type="text"]:focus:required:invalid{
+            border:2px solid red;
+           }
+           form input[type="number"]:required:valid{
+            border:2px solid green;
+           }
+           form input[type="text"]:focus:required:invalid{
+            border:2px solid red;
+           } */
+
+.btnSeguimiento{
+    margin-left: 40px;
+    
+}
+
+.addProducts{
+    margin-top: -29px;
+}
+
+.espacio{
+    margin-top: 22px;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=”UTF-8″ />
+        <title>Registro de pedidos</title>
+        <link rel="shortcut icon" href ="../assets/img/logo.png"> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../index.html"><img src="../assets/img/logo.png" width="50" height="50"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="../index.html">Inicio</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Clientes
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="clients.html">Listado de clientes</a></li>
+                  <li><a class="dropdown-item" href="clientRegister.html">Registrar cliente</a></li>
+                  <li><a class="dropdown-item" href="registerOrderTrackin.html">Registrar seguimiento del cliente</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Pedidos
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="orders.html">Listado de pedidos </a></li>
+                  <li><a class="dropdown-item" href="orderRegister.html">Registrar pedidos</a></li>
+                  <li><a class="dropdown-item" href="orderRegisterGranel.html">Registrar pedidos a granel</a></li>
+                </ul>
+              </li>
+              
+            </div>
+          </div>
+        </div>
+      </nav>
+          <section>
+            <div>
+                <h3 style="margin-top: 40px; margin-left: 25px">Registro de pedidos</h3>
+            </div>
+        </section>
+        <section>
+          <article>
+              <div class="container">
+                  <form class="margen1" onsubmit="return registerPedido()" >
+                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="form-group">
+                                  <label for="disabledTextInput" class="form-label">Pedido</label>
+                                  <input type="text" id="pedidoRe" class="form-control" placeholder="Ana Olivera Delgado">
+                              </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="disabledTextInput" class="form-label">Cliente</label>
+                                <select class="form-select" aria-label="Default select example" id="clienteSelect">
+                                    <option selected>Seleccione una opción</option>
+                                  </select>
+                            </div>
+                        </div>
+                          <div class="col-md-4">
+                              <div class="form-group">
+                                  <label for="disabledTextInput" class="form-label">Elaboró</label>
+                                  <input type="text" id="elaboroRe" class="form-control"
+                                      placeholder="Ana Olivera Delgado">
+                              </div>
+                          </div>
+                          <div class="col-md-4 marginForm">
+                              <div class="form-group"> 
+                                  <label for="disabledTextInput" class="form-label">Fecha de solicitud</label>
+                                  <input type="date" id="datePedidoRe" class="form-control" placeholder="Ana Olivera Delgado">
+                              </div>
+                          </div>
+                        
+                      </div>
+                      <div class="text-end ">
+                          <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> -->
+                          <button type="submit" class="btn btn-success">Registrar</button>
+                      </div>
+                      
+                  </form>
+              </div>
+          </article>
+      </section>
+
+      <section class="content">
+        <div class="card" id="cardClientRegister">
+           <div class="card-header headCard " data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+             <h4 class="card-title">Listado de pedidos para agregar productos</h4>
+           </div>
+           <div lass="collapse" id="collapseExample">
+             <div class="card card-body">
+ 
+               <div class="row justify-content-center">
+                 <div class="col-10">
+                   <table class="table table-hover" id="tablaPedidos1">
+                       <thead>
+                         <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Fecha</th>
+                           <th scope="col">Pedido</th>
+                           <th scope="col">Agregar productos</th>
+                           <th scope="col">Check</th>        
+                         </tr>
+                       </thead>
+                       <tbody>
+                       </tbody>
+                     </table>
+                 </div>
+             </div>
+           </div>
+           </div>
+         </div>
+       </section>
+
+       <!-- MODAL HACER CHECK  PEDIDO-->
+      <div class="modal fade" id="checkPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Realización de check al pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="javascript:void(0);" onsubmit="checkPedido();">
+                    <div class="modal-body">
+                        <input type="hidden" id="id_checkPedido">
+                        <label>¿Desea finalizar el pedido?</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-danger">Check</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+       <!--MODAL AGREGAR PRODUCTOS A UN PEDIDO-->
+       <div class="modal fade" id="detallesPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+        <div class="modal-dialog modal-lg" >
+          <div class="modal-content"  >
+            <div class="modal-header colorHeadCard2">
+              <h5 class="modal-title">Agregar productos</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+              <form action="javascript:void(0);" onsubmit="return registerDetallesPedido();" id="addProduct">
+                <div class="row">
+                  
+                  <div class="col-md-6">
+                    <input type="hidden" id="id_pedido">
+                    <div class="form-group">
+                        <label for="disabledTextInput" class="form-label">Producto</label>
+                        <select class="form-select" aria-label="Default select example" id="ProductSelect">
+                            <option selected>Seleccione una opción</option>
+                          </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3 ">
+                      <div class="form-group">
+                          <label for="disabledTextInput" class="form-label">Cantidad</label>
+                          <input type="number" id="unidades" class="form-control"
+                             >
+                      </div>
+                  </div>
+                  <div class="col-md-1 btnPlus">
+                    <button type="submit" class="btn btn-primary addProducts" ><i class="fa fa-plus"
+                      aria-hidden="true"></i></button>
+                  </div> 
+
+                  <div class="row justify-content-center" style="margin-top: 30px;">
+                            <div class="col-10">
+                              <table class="table table-hover" id="mostrarProductos">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Producto</th>
+                                      <th scope="col">Cantidad</th>
+                                      <th scope="col">Precio unitario</th>
+                                      <th scope="col">Precio total</th>        
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                                              
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                          <!-- <div class="col-md-12 fontBadge text-end">
+                            <label for="disabledTextInput" class="form-label">Total</label>
+                            <span class="badge bg-danger">200</span>
+                          </div> -->
+                  <div class="text-end espacio">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="location.reload() ">Cerrar</button>
+                    <!-- <button type="submit" class="btn btn-success">Guardar</button> -->
+                  </div>
+              </form>
+            </div>                
+          </div>
+        </div>
+      </div>
+
+      
+
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+    <script src="../controller/pedidosController.js"></script>
+    </body>
+</html>
+
+<!-- NOTA:  TENER EN CUENTA PARA VER EL CONTEO DE LA CANTIDAD DE PRODUCTOS Y EL TOTAL PARA QUE LAS OPERACIONES SE HAGAN INTERNAMENTE -->
