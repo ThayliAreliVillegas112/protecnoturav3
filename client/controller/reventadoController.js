@@ -95,7 +95,7 @@ function registerSegReventado (){
         },
         buttonsStyling: false
     })
-    var materiaPrima_id = 3;
+    var materiaPrima_id = 1;
     let cantMateriaPrima = document.getElementById('cantM').value;
     let cantidadAmarantoRev = document.getElementById('cantAmaReventado').value;
     let dateElaboracion = document.getElementById('dateElaboracion').value;

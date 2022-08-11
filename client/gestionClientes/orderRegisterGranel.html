@@ -4,10 +4,10 @@
         <meta charset=”UTF-8″ />
         <title>Registro de pedidos a granel</title>
         <link rel="shortcut icon" href ="../assets/img/logo.png"> 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"/>
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
         <link rel="stylesheet" href="../assets/css/style.css">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
@@ -54,106 +54,38 @@
         <section>
           <article>
               <div class="container">
-                  <form class="margen1" onsubmit="return registerOrder2()">
+                  <form class="margen1" onsubmit="return registerPedidoGranel()" >
                       <div class="row">
                           <div class="col-md-4">
                               <div class="form-group">
                                   <label for="disabledTextInput" class="form-label">Pedido</label>
-                                  <input type="text" id="disabledTextInput" class="form-control" placeholder="Ana Olivera Delgado">
+                                  <input type="text" id="pedidoReg" class="form-control" placeholder="Ana Olivera Delgado">
                               </div>
                           </div>
                           <div class="col-md-4">
                             <div class="form-group">
                                 <label for="disabledTextInput" class="form-label">Cliente</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" id="clienteSelect2">
                                     <option selected>Seleccione una opción</option>
-                                    <option value="1">Ana Olivera Delgado</option>
-                                    <option value="2">Miriam Saucedo Bustamante</option>
-                                    <option value="3">Daniel Santana Mendoza</option>
                                   </select>
                             </div>
                         </div>
                           <div class="col-md-4">
                               <div class="form-group">
                                   <label for="disabledTextInput" class="form-label">Elaboró</label>
-                                  <input type="text" id="disabledTextInput" class="form-control"
+                                  <input type="text" id="elaboroReg" class="form-control"
                                       placeholder="Ana Olivera Delgado">
                               </div>
                           </div>
                           <div class="col-md-4 marginForm">
-                              <div class="form-group">
+                              <div class="form-group"> 
                                   <label for="disabledTextInput" class="form-label">Fecha de solicitud</label>
-                                  <input type="date" id="disabledTextInput" class="form-control"
-                                      placeholder="Ana Olivera Delgado">
+                                  <input type="date" id="datePedidoReg" class="form-control" placeholder="Ana Olivera Delgado">
                               </div>
-                          </div>
-                          <div class="col-md-4 marginForm">
-                            <div class="form-group">
-                                <label for="disabledTextInput" class="form-label">Producto</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Seleccione una opción</option>
-                                    <option value="1">Amaranto</option>
-                                    <option value="2">Miel de maguey</option>
-                                    <option value="3">Chía</option>
-                                  </select>
-                            </div>
-                          </div>
-                          <div class="col-md-3 marginForm">
-                              <div class="form-group">
-                                  <label for="disabledTextInput" class="form-label">Cantidad (Kg)</label>
-                                  <input type="number" id="disabledTextInput" class="form-control"
-                                     >
-                              </div>
-                          </div>
-                          <div class="col-md-1 btnPlus">
-                            <button type="button" class="btn btn-primary" ><i class="fa fa-plus"
-                              aria-hidden="true"></i></button>
-                          </div>
-                          <div class="row justify-content-center" style="margin-top: 30px;">
-                            <div class="col-10">
-                              <table class="table " >
-                                  <thead>
-                                    <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">Producto</th>
-                                      <th scope="col">Cantidad (kg)</th>
-                                      <th scope="col">Precio por kg</th>
-                                      <th scope="col">Precio total</th>        
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <th scope="row">1</th>
-                                      <td>Amaranto reventado</td>
-                                      <td>5</td>
-                                      <td>40</td>
-                                      <td>200</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">2</th>
-                                      <td>Chía</td>
-                                      <td>3</td>
-                                      <td>35</td>
-                                      <td>105</td>
-                                    </tr>
-                                    <tr>
-                                      <th scope="row">3</th>
-                                      <td >Miel de maguey</td>
-                                      <td>2</td>
-                                      <td>80</td>
-                                      <td>160</td>
-                                    </tr>                                  
-                                  </tbody>
-                                </table>
-                            </div>
-                        </div>
-                          <div class="col-md-12 fontBadge text-end">
-                            <label for="disabledTextInput" class="form-label">Total</label>
-                            <span class="badge bg-danger">200</span>
                           </div>
                         
                       </div>
-                      <div class="text-end margen2">
+                      <div class="text-end ">
                           <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> -->
                           <button type="submit" class="btn btn-success">Registrar</button>
                       </div>
@@ -163,51 +95,109 @@
           </article>
       </section>
 
-      <script>
-        function registerOrder2(){
-            event.preventDefault();
-              const swalWithBootstrapButtons = Swal.mixin({
-              customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-              },
-              buttonsStyling: false
-            })
-            swalWithBootstrapButtons.fire({
-            title: '¿Estás seguro de realizar el registro?',
-            text: "Te sugerimos que revises la información antes de registrar, ya que no modificaciones posteriores",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Confirmar',
-            cancelButtonText: 'Cancelar',
-            reverseButtons: true
-          }).then((result) => {
-            if (result.isConfirmed) { //value
-              //aquí estaria el codigo del registro
-              swalWithBootstrapButtons.fire(
-                'Registro exitoso!',
-                'Se ha registrado el pedido exitosamente',
-                'success'
-              )
-            } else if (
-              /* Read more about handling dismissals below */
-              result.dismiss === Swal.DismissReason.cancel
-            ) {
-              swalWithBootstrapButtons.fire(
-                'Acción cancelada',
-                'No se ha realizado el registro',
-                'error'
-              )
-            }
-          }).catch((error)=>{
-            swalWithBootstrapButtons.fire(
-                '¡Error al registrar!',
-                'Ha ocurrido un error al registrar e pedido',
-                'error'
-              )
-          })
-        }
-    </script>
+      <section class="content">
+        <div class="card" id="cardClientRegister">
+           <div class="card-header headCard " data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+             <h4 class="card-title">Listado de pedidos para agregar productos</h4>
+           </div>
+           <div lass="collapse" id="collapseExample">
+             <div class="card card-body">
+ 
+               <div class="row justify-content-center">
+                 <div class="col-10">
+                   <table class="table table-hover" id="tablaPedidos1">
+                       <thead>
+                         <tr>
+                           <th scope="col">#</th>
+                           <th scope="col">Fecha</th>
+                           <th scope="col">Pedido</th>
+                           <th scope="col">Agregar productos</th>
+                           <th scope="col">Check</th>        
+                         </tr>
+                       </thead>
+                       <tbody>
+                       </tbody>
+                     </table>
+                 </div>
+             </div>
+           </div>
+           </div>
+         </div>
+       </section>
+
+
+       <!--MODAL AGREGAR PRODUCTOS A UN PEDIDO-->
+       <div class="modal fade" id="detallesPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+        <div class="modal-dialog modal-lg" >
+          <div class="modal-content"  >
+            <div class="modal-header colorHeadCard2">
+              <h5 class="modal-title">Agregar productos</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
+              <form action="javascript:void(0);" onsubmit="return registerDetallesPedido();" id="addProduct">
+                <div class="row">
+                  
+                  <div class="col-md-6">
+                    <input type="hidden" id="id_pedido">
+                    <div class="form-group">
+                        <label for="disabledTextInput" class="form-label">Producto</label>
+                        <select class="form-select" aria-label="Default select example" id="MPSelect">
+                            <option selected>Seleccione una opción</option>
+                          </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3 ">
+                      <div class="form-group">
+                          <label for="disabledTextInput" class="form-label">Cantidad</label>
+                          <input type="number" id="unidades" class="form-control"
+                             >
+                      </div>
+                  </div>
+                  <div class="col-md-1 btnPlus">
+                    <button type="submit" class="btn btn-primary addProducts" ><i class="fa fa-plus"
+                      aria-hidden="true"></i></button>
+                  </div> 
+
+                  <div class="row justify-content-center" style="margin-top: 30px;">
+                            <div class="col-10">
+                              <table class="table table-hover" id="mostrarProductos">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Producto</th>
+                                      <th scope="col">Cantidad</th>
+                                      <th scope="col">Precio unitario</th>
+                                      <th scope="col">Precio total</th>        
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                                              
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                          <!-- <div class="col-md-12 fontBadge text-end">
+                            <label for="disabledTextInput" class="form-label">Total</label>
+                            <span class="badge bg-danger">200</span>
+                          </div> -->
+                  <div class="text-end espacio">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="location.reload() ">Cerrar</button>
+                    <!-- <button type="submit" class="btn btn-success">Guardar</button> -->
+                  </div>
+              </form>
+            </div>                
+          </div>
+        </div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+    <script src="../controller/pedidosGranelController.js"></script>
+    <script src="../controller/pedidosController.js"></script>
     </body>
 </html>
 

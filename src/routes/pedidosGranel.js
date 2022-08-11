@@ -15,70 +15,70 @@ router.get('/', async (req, res) => { // OBTIENE TODOS LOS PEDIDOS QUE TENGAN CO
     console.log(listPedido);
 })
 
-router.get('/lista2/', async (req, res) => { // OBTIENE TODOS LOS PEDIDOS QUE TENGAN COMO STATUS 2
-    let listPedido = await pool.query('SELECT * FROM pedido where status = 2'); // p inner join client c on p.client_id = c.id -> esto le quite porque solo me regresaba como id el 1, 2 o a veces el 3
+// router.get('/lista2/', async (req, res) => { // OBTIENE TODOS LOS PEDIDOS QUE TENGAN COMO STATUS 2
+//     let listPedido = await pool.query('SELECT * FROM pedido where status = 2'); // p inner join client c on p.client_id = c.id -> esto le quite porque solo me regresaba como id el 1, 2 o a veces el 3
     
-    res.json({
-        status: 200,
-        message: "Se ha listado correctamente los pedidos con status 2",
-        listPedido: listPedido
-    });
-    console.log(listPedido);
-})
+//     res.json({
+//         status: 200,
+//         message: "Se ha listado correctamente los pedidos con status 2",
+//         listPedido: listPedido
+//     });
+//     console.log(listPedido);
+// })
 
-router.get('/lista3/', async (req, res) => { // OBTIENE TODOS LOS PEDIDOS QUE TENGAN COMO STATUS 3
-    let listPedido = await pool.query('SELECT * FROM pedido where status = 3'); 
+// router.get('/lista3/', async (req, res) => { // OBTIENE TODOS LOS PEDIDOS QUE TENGAN COMO STATUS 3
+//     let listPedido = await pool.query('SELECT * FROM pedido where status = 3'); 
     
-    res.json({
-        status: 200,
-        message: "Se ha listado correctamente los pedidos con status 3",
-        listPedido: listPedido
-    });
-    console.log(listPedido);
-})
+//     res.json({
+//         status: 200,
+//         message: "Se ha listado correctamente los pedidos con status 3",
+//         listPedido: listPedido
+//     });
+//     console.log(listPedido);
+// })
 
-router.get('/lista4/', async (req, res) => { // OBTIENE TODOS LOS PEDIDOS QUE TENGAN COMO STATUS 2
-    let listPedido = await pool.query('SELECT * FROM pedido where status = 4'); // p inner join client c on p.client_id = c.id -> esto le quite porque solo me regresaba como id el 1, 2 o a veces el 3
+// router.get('/lista4/', async (req, res) => { // OBTIENE TODOS LOS PEDIDOS QUE TENGAN COMO STATUS 2
+//     let listPedido = await pool.query('SELECT * FROM pedido where status = 4'); // p inner join client c on p.client_id = c.id -> esto le quite porque solo me regresaba como id el 1, 2 o a veces el 3
     
-    res.json({
-        status: 200,
-        message: "Se ha listado correctamente los pedidos con status 4",
-        listPedido: listPedido
-    });
-    console.log(listPedido);
-})
+//     res.json({
+//         status: 200,
+//         message: "Se ha listado correctamente los pedidos con status 4",
+//         listPedido: listPedido
+//     });
+//     console.log(listPedido);
+// })
 
-router.get('/lista2/:id', async (req, res) =>{
-    const { id } = req.params;
-    let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id where status = 2 and p.id = ?', [id]);
-    // SELECT * FROM pedido p inner join client c on p.client_id = c.id where status = 2 and p.id = ?
-    res.json({
-        status: 200,
-        message: "Se ha encontrado el pedido",
-        listPedido: listPedido
-    });
-});
+// router.get('/lista2/:id', async (req, res) =>{
+//     const { id } = req.params;
+//     let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id where status = 2 and p.id = ?', [id]);
+//     // SELECT * FROM pedido p inner join client c on p.client_id = c.id where status = 2 and p.id = ?
+//     res.json({
+//         status: 200,
+//         message: "Se ha encontrado el pedido",
+//         listPedido: listPedido
+//     });
+// });
 // SELECT * FROM pedido p inner join client c on p.client_id = c.id inner join detallespedidop d on p.id = d.pedido_id inner join product r on d.product_id = r.id where status = 2 and p.id = 3
 
-router.get('/:id', async (req, res) =>{ 
-    const { id } = req.params;
-    let listPedido = await pool.query('SELECT * FROM pedido WHERE id = ?', [id]);
-    res.json({
-        status: 200,
-        message: "Se ha encontrado el pedido",
-        listPedido: listPedido
-    });
-});
+// router.get('/:id', async (req, res) =>{ 
+//     const { id } = req.params;
+//     let listPedido = await pool.query('SELECT * FROM pedido WHERE id = ?', [id]);
+//     res.json({
+//         status: 200,
+//         message: "Se ha encontrado el pedido",
+//         listPedido: listPedido
+//     });
+// });
 
-router.get('/pedidoL2/:id', async (req, res) =>{ 
-    const { id } = req.params;
-    let listPedido = await pool.query('SELECT * FROM pedido WHERE status = 2 and id = ?', [id]);
-    res.json({
-        status: 200,
-        message: "Se ha encontrado el pedido",
-        listPedido: listPedido
-    });
-});
+// router.get('/pedidoL2/:id', async (req, res) =>{ 
+//     const { id } = req.params;
+//     let listPedido = await pool.query('SELECT * FROM pedido WHERE status = 2 and id = ?', [id]);
+//     res.json({
+//         status: 200,
+//         message: "Se ha encontrado el pedido",
+//         listPedido: listPedido
+//     });
+// });
 
 router.get('/pedidosDetalles/:id', async (req, res) =>{
     const { id } = req.params;
@@ -90,35 +90,35 @@ router.get('/pedidosDetalles/:id', async (req, res) =>{
     });
 });
 
-router.get('/pedidoL2Detalles/:id', async (req, res) =>{ 
-    const { id } = req.params;
-    let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id WHERE status = 2 and p.id = ?', [id]);
-    res.json({
-        status: 200,
-        message: "Se ha encontrado el detalle del pedido mmmmm",
-        listPedido: listPedido
-    });
-});
+// router.get('/pedidoL2Detalles/:id', async (req, res) =>{ 
+//     const { id } = req.params;
+//     let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id WHERE status = 2 and p.id = ?', [id]);
+//     res.json({
+//         status: 200,
+//         message: "Se ha encontrado el detalle del pedido mmmmm",
+//         listPedido: listPedido
+//     });
+// });
 
-router.get('/pedidoDetallesConfirmados/:id', async (req, res) =>{ 
-    const { id } = req.params;
-    let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id WHERE status = 3 and p.id = ?', [id]);
-    res.json({
-        status: 200,
-        message: "Se ha encontrado el detalle del pedido gggggggg",
-        listPedido: listPedido
-    });
-});
+// router.get('/pedidoDetallesConfirmados/:id', async (req, res) =>{ 
+//     const { id } = req.params;
+//     let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id WHERE status = 3 and p.id = ?', [id]);
+//     res.json({
+//         status: 200,
+//         message: "Se ha encontrado el detalle del pedido gggggggg",
+//         listPedido: listPedido
+//     });
+// });
 
-router.get('/pedidoL3Detalles/:id', async (req, res) =>{ 
-    const { id } = req.params;
-    let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id WHERE status = 4 and p.id = ?', [id]);
-    res.json({
-        status: 200,
-        message: "Se ha encontrado el detalle del pedido xdxdxdxdxxd",
-        listPedido: listPedido
-    });
-});
+// router.get('/pedidoL3Detalles/:id', async (req, res) =>{ 
+//     const { id } = req.params;
+//     let listPedido = await pool.query('SELECT * FROM pedido p inner join client c on p.client_id = c.id WHERE status = 4 and p.id = ?', [id]);
+//     res.json({
+//         status: 200,
+//         message: "Se ha encontrado el detalle del pedido xdxdxdxdxxd",
+//         listPedido: listPedido
+//     });
+// });
 
 router.get('/pedidosDetallesTabla/:id', async (req, res) =>{ //MUESTRA LOS PRODUCTOS EN LA TABLA DEL MODAL EN DONDE SE VAN AGREGANDO LOS PRODUCTOS
     const { id } = req.params;
@@ -144,7 +144,7 @@ router.post('/create', async (req, res)=> { // CREA UN PEDIDO PARA QUE DESPUES S
     });
 });
 
-router.post('/createDetalles', async (req, res)=> { // SE VAN REGISTRANDO CADA UNO DE LOS PRODUCTOS QUE SE VAN AGREGANDO EN EL MODAL DE AGREGAR PRODUCTOS
+router.post('/createDetallesGranel', async (req, res)=> { // SE VAN REGISTRANDO CADA UNO DE LOS PRODUCTOS QUE SE VAN AGREGANDO EN EL MODAL DE AGREGAR PRODUCTOS
     const { cantUnidades, precioTotal, total, pedido_id, product_id	 } = req.body;
     const pedidosDetalles ={
         cantUnidades, precioTotal, total, pedido_id, product_id
