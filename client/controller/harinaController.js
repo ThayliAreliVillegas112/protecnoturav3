@@ -138,6 +138,7 @@ if (nameH == "") {
                     )
                     // let formulario = document.getElementById('formu'); 
                     // formulario.reset()
+                    $('#addHarina'). modal('hide');  //Sirve para cerrar el modal despues de aceptar la eliminación
                     setTimeout(function() {
                         let refresh = document.getElementById('addHarina');
                          refresh= location.reload();
@@ -151,7 +152,7 @@ if (nameH == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',
@@ -202,7 +203,7 @@ if (nameH == "") {
                 if (res.status === 200) {
                     swalWithBootstrapButtons.fire(
                         'Modificación exitosa',
-                        'Se ha modificado al cliente exitosamente',
+                        'Se ha modificado exitosamente el nombre de la harina',
                         'success'
                     )
                     $('#updateNameH'). modal('hide');  //Sirve para cerrar el modal despues de aceptar la eliminación
@@ -219,7 +220,7 @@ if (nameH == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado la modificación',
@@ -304,7 +305,7 @@ if (cantidad == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',

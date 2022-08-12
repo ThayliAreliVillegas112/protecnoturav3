@@ -105,7 +105,7 @@
  
                <div class="row justify-content-center">
                  <div class="col-10">
-                   <table class="table table-hover" id="tablaPedidos1">
+                   <table class="table table-hover" id="tablaPedidos1G">
                        <thead>
                          <tr>
                            <th scope="col">#</th>
@@ -135,11 +135,11 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" >
-              <form action="javascript:void(0);" onsubmit="return registerDetallesPedido();" id="addProduct">
+              <form action="javascript:void(0);" onsubmit="return registerDetallesPedidoGranel();" id="addProduct">
                 <div class="row">
                   
                   <div class="col-md-6">
-                    <input type="hidden" id="id_pedido">
+                    <input type="hidden" id="id_pedido2">
                     <div class="form-group">
                         <label for="disabledTextInput" class="form-label">Producto</label>
                         <select class="form-select" aria-label="Default select example" id="MPSelect">
@@ -150,7 +150,7 @@
                   <div class="col-md-3 ">
                       <div class="form-group">
                           <label for="disabledTextInput" class="form-label">Cantidad</label>
-                          <input type="number" id="unidades" class="form-control"
+                          <input type="number" id="cantidadd" class="form-control"
                              >
                       </div>
                   </div>

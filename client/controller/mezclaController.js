@@ -167,7 +167,7 @@ function registerSegMezcla (){
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',
@@ -238,7 +238,7 @@ if (cantidadMezcla == ""){
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',

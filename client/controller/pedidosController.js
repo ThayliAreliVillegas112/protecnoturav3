@@ -104,7 +104,7 @@ const getInfoLista3 = async id => {
     document.getElementById('nameClienteP').value = list3.listPedido[0].name + " "+ list3.listPedido[0].surname + " " + list3.listPedido[0].lastname;
     document.getElementById('fechaEntrega').value = list3.listPedido[0].dateEntrega;
     document.getElementById('hora').value = list3.listPedido[0].timeLlegada;
-    document.getElementById('empresa').value = list3.listPedido[0].companyTransporte;
+    document.getElementById('empresaT').value = list3.listPedido[0].companyTransporte;
     document.getElementById('operador').value = list3.listPedido[0].nameOperador;
     document.getElementById('identifico').value = list3.listPedido[0].seIdentifico;
     document.getElementById('placasNum').value = list3.listPedido[0].numPlacas;
@@ -198,7 +198,7 @@ if (pedido == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',
@@ -417,7 +417,7 @@ if (product_id == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'El producto ya se encuentra en la lista',
                 'Ingrese otro producto',
@@ -486,7 +486,7 @@ if (datePago == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',
@@ -582,7 +582,7 @@ if (dateEntrega == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',

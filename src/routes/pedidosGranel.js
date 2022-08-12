@@ -82,7 +82,7 @@ router.get('/', async (req, res) => { // OBTIENE TODOS LOS PEDIDOS QUE TENGAN CO
 
 router.get('/pedidosDetalles/:id', async (req, res) =>{
     const { id } = req.params;
-    let listDetallesPedido = await pool.query('SELECT * FROM detallespedidop WHERE pedido_id = ?', [id]);
+    let listDetallesPedido = await pool.query('SELECT * FROM detallespedidog WHERE pedido_id = ?', [id]);
     res.json({
         status: 200,
         message: "Se ha encontrado el detalle del pedido",
@@ -122,7 +122,7 @@ router.get('/pedidosDetalles/:id', async (req, res) =>{
 
 router.get('/pedidosDetallesTabla/:id', async (req, res) =>{ //MUESTRA LOS PRODUCTOS EN LA TABLA DEL MODAL EN DONDE SE VAN AGREGANDO LOS PRODUCTOS
     const { id } = req.params;
-    let listDetallesPedido = await pool.query('SELECT * FROM detallesPedidop m inner join pedido h on m.pedido_id = h.id INNER join product p on m.product_id = p.id WHERE pedido_id = ?', [id]);
+    let listDetallesPedido = await pool.query('SELECT * FROM detallesPedidog m inner join pedido h on m.pedido_id = h.id INNER join product p on m.materiaPrima_id = p.id WHERE pedido_id = ?', [id]);
     res.json({
         status: 200,
         message: "Se ha encontrado el detalle del pedido para ser mostrado en la tabla",
@@ -144,12 +144,12 @@ router.post('/create', async (req, res)=> { // CREA UN PEDIDO PARA QUE DESPUES S
     });
 });
 
-router.post('/createDetallesGranel', async (req, res)=> { // SE VAN REGISTRANDO CADA UNO DE LOS PRODUCTOS QUE SE VAN AGREGANDO EN EL MODAL DE AGREGAR PRODUCTOS
-    const { cantUnidades, precioTotal, total, pedido_id, product_id	 } = req.body;
+router.post('/createDetallesGranelb', async (req, res)=> { // SE VAN REGISTRANDO CADA UNO DE LOS PRODUCTOS QUE SE VAN AGREGANDO EN EL MODAL DE AGREGAR PRODUCTOS
+    const { cantidad, precioTotal, total, materiaPrima_id, pedido_id} = req.body;
     const pedidosDetalles ={
-        cantUnidades, precioTotal, total, pedido_id, product_id
+        cantidad, precioTotal, total, materiaPrima_id, pedido_id
     };
-    await pool.query('INSERT INTO detallespedidop set ?', [pedidosDetalles]);
+    await pool.query('INSERT INTO detallespedidog set ?', [pedidosDetalles]);
     res.json({
         status: 200,
         message: "Se ha registrado los detalles del pedido exitosamente!",
@@ -157,35 +157,35 @@ router.post('/createDetallesGranel', async (req, res)=> { // SE VAN REGISTRANDO 
     });
 });
 
-router.post('/confirmar/:id', async (req, res)=>{
-    const { id } = req.params;
-    // var dateUpdate = new Date().toISOString();
-    const { datePago, status } = req.body;
+// router.post('/confirmar/:id', async (req, res)=>{
+//     const { id } = req.params;
+//     // var dateUpdate = new Date().toISOString();
+//     const { datePago, status } = req.body;
 
-    const confi = { datePago, status };
+//     const confi = { datePago, status };
 
-     await pool.query('UPDATE pedido SET ? WHERE id = ?', [confi, id]);
-        res.json({
-            status: 200,
-            message: "Se ha confirmado el pedido con la fecha de pago",
-            confi: confi
-        });
-});
+//      await pool.query('UPDATE pedido SET ? WHERE id = ?', [confi, id]);
+//         res.json({
+//             status: 200,
+//             message: "Se ha confirmado el pedido con la fecha de pago",
+//             confi: confi
+//         });
+// });
 
-router.post('/regOrdenSalida/:id', async (req, res)=>{
-    const { id } = req.params;
-    // var dateUpdate = new Date().toISOString();
-    const { dateEntrega, timeLlegada, companyTransporte, nameOperador, seIdentifico, numPlacas, tipoTransporte, descripCarga, observations, dateSalida, status } = req.body;
+// router.post('/regOrdenSalida/:id', async (req, res)=>{
+//     const { id } = req.params;
+//     // var dateUpdate = new Date().toISOString();
+//     const { dateEntrega, timeLlegada, companyTransporte, nameOperador, seIdentifico, numPlacas, tipoTransporte, descripCarga, observations, dateSalida, status } = req.body;
 
-    const confi = { dateEntrega, timeLlegada, companyTransporte, nameOperador, seIdentifico, numPlacas, tipoTransporte, descripCarga, observations, dateSalida, status };
-    console.log(confi)
-     await pool.query('UPDATE pedido SET ? WHERE id = ?', [confi, id]);
-        res.json({
-            status: 200,
-            message: "Se ha registrado la orden de salida",
-            confi: confi
-        });
-});
+//     const confi = { dateEntrega, timeLlegada, companyTransporte, nameOperador, seIdentifico, numPlacas, tipoTransporte, descripCarga, observations, dateSalida, status };
+//     console.log(confi)
+//      await pool.query('UPDATE pedido SET ? WHERE id = ?', [confi, id]);
+//         res.json({
+//             status: 200,
+//             message: "Se ha registrado la orden de salida",
+//             confi: confi
+//         });
+// });
 
 router.post ('/delete/:id', async (req, res) =>{ // CAMBIA EL ESTADO DEL PEDIDO A 2
     const { id } = req.params;

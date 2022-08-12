@@ -114,84 +114,84 @@ function registerClient (){
     let tiktok = document.getElementById('tiktokRe').value;
     let instagram = document.getElementById('instagramRe').value;
 
-if (name == "") {
-    Swal.fire({
-        title: "Completa el campo NOMBRE",
-        confirmButtonText: "Aceptar",
-        icon: "error",
-    })
-} else if (surname == ""){
-    Swal.fire({
-        title: "Completa el campo APELLIDO MATERNO",
-        confirmButtonText: "Aceptar",
-        icon: "error",
-    })
-}else if(lastname == ""){
-    Swal.fire({
-        title: "Completa el campo APELLIDO PATERNO",
-        confirmButtonText: "Aceptar",
-        icon: "error",
-    })
-}else if(address == ""){
-    Swal.fire({
-        title: "Completa el campo DIRECCIÓN",
-        confirmButtonText: "Aceptar",
-        icon: "error",
-    })
-}else if(phone == ""){
-    Swal.fire({
-        title: "Completa el campo TELÉFONO",
-        confirmButtonText: "Aceptar",
-        icon: "error",
-    })
-}else if(email == ""){
-    Swal.fire({
-        title: "Completa el campo CORREO",
-        confirmButtonText: "Aceptar",
-        icon: "error",
-    })
-}else{
-    swalWithBootstrapButtons.fire({
-        title: 'Estás seguro de realizar el registro?',
-        text: "Te sugerimos que revises la información antes de registrar",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Confirmar',
-        cancelButtonText: 'Cancelar',
-        reverseButtons: true
-    }).then ((result) => {
-        if(result.isConfirmed){
-            $.ajax({
-                type: 'POST',
-                url: 'http://localhost:4000/client/create',
-                data: { name, surname, lastname, age, address, phone, extension, email, company, facebook, tiktok, instagram}
-            }).done(res => {
-                console.log(res)
-                if (res.status === 200) {
-                    swalWithBootstrapButtons.fire(
-                        'Registro exitoso',
-                        'Se ha registrado al cliente exitosamente',
-                        'success'
-                    )
-                    let formulario = document.getElementById('formu'); 
-                    formulario.reset()
-                } else {
-                    Swal.fire({
-                        title: "Hubo un problema al registrar",
-                        confirmButtonText: "Aceptar",
-                        icon: "error",
-                    });
-                }
-            });
-        }{
-            swalWithBootstrapButtons.fire(
-                'Acción cancelada',
-                'No se ha realizado el registro',
-                'error'
-            )
-        }
-    })
-}};
+    if (name == "") {
+        Swal.fire({
+            title: "Completa el campo NOMBRE",
+            confirmButtonText: "Aceptar",
+            icon: "error",
+        })
+    } else if (surname == ""){
+        Swal.fire({
+            title: "Completa el campo APELLIDO MATERNO",
+            confirmButtonText: "Aceptar",
+            icon: "error",
+        })
+    }else if(lastname == ""){
+        Swal.fire({
+            title: "Completa el campo APELLIDO PATERNO",
+            confirmButtonText: "Aceptar",
+            icon: "error",
+        })
+    }else if(address == ""){
+        Swal.fire({
+            title: "Completa el campo DIRECCIÓN",
+            confirmButtonText: "Aceptar",
+            icon: "error",
+        })
+    }else if(phone == ""){
+        Swal.fire({
+            title: "Completa el campo TELÉFONO",
+            confirmButtonText: "Aceptar",
+            icon: "error",
+        })
+    }else if(email == ""){
+        Swal.fire({
+            title: "Completa el campo CORREO",
+            confirmButtonText: "Aceptar",
+            icon: "error",
+        })
+    }else{
+        swalWithBootstrapButtons.fire({
+            title: 'Estás seguro de realizar el registro?',
+            text: "Te sugerimos que revises la información antes de registrar",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then ((result) => {
+            if(result.isConfirmed){
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:4000/client/create',
+                    data: { name, surname, lastname, age, address, phone, extension, email, company, facebook, tiktok, instagram}
+                }).done(res => {
+                    console.log(res)
+                    if (res.status === 200) {
+                        swalWithBootstrapButtons.fire(
+                            'Registro exitoso',
+                            'Se ha registrado al cliente exitosamente',
+                            'success'
+                        )
+                        let formulario = document.getElementById('formu'); 
+                        formulario.reset()
+                    } else {
+                        Swal.fire({
+                            title: "Hubo un problema al registrar",
+                            confirmButtonText: "Aceptar",
+                            icon: "error",
+                        });
+                    }
+                });
+            }else{
+                swalWithBootstrapButtons.fire(
+                    'Acción cancelada',
+                    'No se ha realizado el registro',
+                    'error'
+                )
+            }
+        })
+    }};
 
 function updateClient (){
     event.preventDefault();
@@ -294,7 +294,7 @@ if (name == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado la modificación',

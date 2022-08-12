@@ -124,7 +124,7 @@ if (client_id == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',

@@ -164,7 +164,7 @@ if (name == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',
@@ -271,7 +271,7 @@ if (name == "") {
                     });
                 }
             });
-        }{
+        }else{
             swalWithBootstrapButtons.fire(
                 'Acción cancelada',
                 'No se ha realizado el registro',
