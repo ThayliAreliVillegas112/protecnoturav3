@@ -174,6 +174,7 @@
                     <th scope="col">Fecha de envío</th>
                     <th scope="col">Pedido</th>
                     <th scope="col">Detalles</th>
+                    <!-- <th scope="col">Detalles pedido</th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -186,6 +187,46 @@
       </div>
     </div>
   </section>
+
+  <!-- -->
+  <!-- <section class="content marginCardB">
+    <div class="card" id="cardClientRegister">
+      <div class="card-header headCard" data-bs-toggle="collapse" data-bs-target="#collapseExample4"
+        aria-expanded="false" aria-controls="collapseExample">
+        <h4 class="card-title">Listado de envíados a granel</h4>
+      </div>
+      <div lass="collapse" id="collapseExample4">
+        <div class="card card-body">
+          <div class="row justify-content-center" style="margin-top: 30px">
+            <div class="col-10">
+              <table class="table table-hover" id="tablaPedidos4Granel">
+                <thead>
+                  <div class="input-group">
+                    <div class="form-outline">
+                      <input id="search-focus3" type="search" class="form-control" onkeyup="doSearch4()" />
+                      <label class="form-label" for="form1">Buscar</label>
+                    </div>
+                    <button type="button" class="btn btn-primary buscar">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fecha de envío</th>
+                    <th scope="col">Pedido</th>
+                    <th scope="col">Detalles</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
   <!--MODAL DETALLES LISTA2-->
   <div class="modal fade" id="detailsOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -435,7 +476,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Cerrar
               </button>
-              <button type="submit" class="btn btn-danger">Confirmar</button>
+              <button type="submit" class="btn btn-success">Confirmar</button>
             </div>
           </form>
         </div>
@@ -532,6 +573,47 @@
       </div>
     </div>
   </div>
+
+   <!--MODAL AGREGAR PRODUCTOS A UN PEDIDO-->
+   <!-- <div class="modal fade" id="detallesPedidoLista" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+    <div class="modal-dialog modal-lg" >
+      <div class="modal-content"  >
+        <div class="modal-header colorHeadCard2">
+          <h5 class="modal-title">Detalles del pedido</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" >
+          <form  id="addProduct">
+            <div class="row">
+              <input type="hidden" id="id_pedidoDetails">
+
+              <div class="row justify-content-center" style="margin-top: 30px;">
+                        <div class="col-10">
+                          <table class="table table-hover" id="mostrarProductosLista">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Producto</th>
+                                  <th scope="col">Cantidad</th>
+                                  <th scope="col">Precio unitario</th>
+                                  <th scope="col">Precio total</th>        
+                                </tr>
+                              </thead>
+                              <tbody>
+                                                          
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                      
+              <div class="text-end espacio">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="location.reload() ">Cerrar</button>
+              </div>
+          </form>
+        </div>                
+      </div>
+    </div>
+  </div> -->
 
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>

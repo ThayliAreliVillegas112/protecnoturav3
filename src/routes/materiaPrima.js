@@ -49,26 +49,17 @@ router.get('/:id', async (req, res) =>{
     });
 });
 
-router.get('/stock/:id', async (req, res) =>{
-    const { id } = req.params;
-    let listStock = await pool.query('SELECT SUM(cantidad) FROM registerCompra WHERE materiaPrima_id = ?', [id]);
-    res.json({
-        status: 200,
-        message: "e esta calculando correctamente el stock",
-        listStock: listStock
-    });
-});
-
-// router.post('/stock/:id', async (req, res)=>{ //Solo actualiza el stock
-//     const { id } = req.params; 
-
-//      await pool.query('SELECT SUM(cantidad) FROM registerCompra WHERE materiaPrima_id = ?', [id]);
-//         res.json({
-//             status: 200,
-//             message: "Se esta calculando correctamente el stock",
-//             stock2: stock2
-//         });
+// router.get('/stock/:id', async (req, res) =>{
+//     const { id } = req.params;
+//     let listStock = await pool.query('SELECT SUM(cantidad)as stock FROM registerCompra WHERE materiaPrima_id = ?', [id]);
+//     res.json({
+//         status: 200,
+//         message: "e esta calculando correctamente el stock",
+//         listStock: listStock
+//     });
 // });
+
+
 router.get('/registerC/:id', async (req, res) =>{
     const { id } = req.params;
     let listMateria = await pool.query('SELECT * FROM registerCompra WHERE id = ?', [id]);
@@ -80,11 +71,11 @@ router.get('/registerC/:id', async (req, res) =>{
 });
 
 router.post('/create', async (req, res)=> {   //Primero solo registra el nombre y precio de la materia prima para tenerlo en la tabla
-    const { nameM, pricePublic } = req.body;
+    const { nameM, pricePublic, stock } = req.body;
     // var dateCompraC = new Date().toISOString();
     //var dateCreated2 = new Date().toLocaleString();
     const materiaPrima ={
-        nameM, pricePublic
+        nameM, pricePublic, stock
     };
 
     await pool.query('INSERT INTO materiaPrima set ?', [materiaPrima]);
@@ -113,9 +104,9 @@ router.post('/regCompra', async (req, res)=>{ // Registra la compra de alguna de
 router.post('/update/:id', async (req, res)=>{ //Solo actualiza el nombre y precio
     const { id } = req.params;
     // var dateUpdate = new Date().toISOString();
-    const { nameM, pricePublic } = req.body;
+    const { nameM, pricePublic, stock } = req.body;
 
-    const materiaPrima = { nameM, pricePublic };
+    const materiaPrima = { nameM, pricePublic, stock };
 
      await pool.query('UPDATE materiaPrima SET ? WHERE id = ?', [materiaPrima, id]);
         res.json({

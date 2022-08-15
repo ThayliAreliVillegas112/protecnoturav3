@@ -53,7 +53,12 @@ const getHarina = () => {
         
         for (let i = 0; i < listHarina.length; i++) {
             let stock;
-            stock = 10;
+            if (listHarina[i].stockH == null){
+                stock = 0;
+            }else{
+                stock = listHarina[i].stockH
+            }
+            
             table.append(
                 "<tr>" +
                 "<td>" + (i+1) + "</td>" + 
@@ -107,6 +112,7 @@ function registerHarina (){
         buttonsStyling: false
     })
     let nameH = document.getElementById('nameHarinaRe').value;
+    let stockH = document.getElementById('stockH').value;
 if (nameH == "") {
     Swal.fire({
         title: "Completa el campo NOMBRE",
@@ -127,7 +133,7 @@ if (nameH == "") {
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:4000/harina/create',
-                data: { nameH}
+                data: { nameH, stockH}
             }).done(res => {
                 console.log(res)
                 if (res.status === 200) {
@@ -175,6 +181,7 @@ function updateNameHarina (){
     console.log("Si entra para hacer los cambios");
     var id = document.getElementById('id_updateHarina').value;
     let nameH = document.getElementById('nameHarina_up').value;
+    let stockH = document.getElementById('stockH_up').value;
     console.log(id);
 
 if (nameH == "") {
@@ -197,7 +204,7 @@ if (nameH == "") {
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:4000/harina/update/' + id,
-                data: {nameH}
+                data: {nameH, stockH}
             }).done(res => {
                 console.log(res)
                 if (res.status === 200) {

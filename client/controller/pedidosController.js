@@ -48,6 +48,12 @@ const getIdPedido = async id => {
 };
 getIdPedido()
 
+const getDeatllesPedidoProductosMatePrimaIdPedido = async id => {
+    var idPedido = await getPedidoById(id);
+    console.log(idPedido);
+    document.getElementById("id_pedidoDetails").value = id;
+    getDetallesPedidos1VistaOrders();
+};
 const getIdPedidoCheck = async id => { //obtengo el id del pedidopara hacer el check (cambiar el status a 2)
     document.getElementById("id_checkPedido").value = id;
     console.log(id_checkPedido);
@@ -254,6 +260,7 @@ const getPedidos2 = () => { //MUESTRA LA PRIMERA TABLA DE LA VISTA ORDERS, ES DE
                 "<td>" + listPedido[i].pedido + "</td>" +
                 "<td>" + listPedido[i].elaboro +"</td>" +
                 "<td>" + '<button onclick="getInfoLista2(' + listPedido[i].id + ');" type="button" class="btn btn-primary text-dark" data-bs-toggle="modal" data-bs-target="#detailsOrder"> <i class="fa fa-info infoBtn" aria-hidden="true"></i></button> </td>' +
+                // "<td>" + '<button onclick="getDeatllesPedidoProductosMatePrimaIdPedido(' + listPedido[i].id + ');" type="button" class="btn btn-info text-dark" data-bs-toggle="modal" data-bs-target="#detallesPedidoLista"> <i class="fa fa-cart-plus infoBtn" aria-hidden="true"></i></button> </td>' +
                 "<td>" + '<button onclick="getIdPedidoConfirmar(' + listPedido[i].id + ');" type="button" class="btn btn-success iconMargin text-dark" data-bs-toggle="modal" data-bs-target="#confirmOrder"> <i class="fa fa-clipboard-check infoBtn" aria-hidden="true"></i></button> </td>' +
                "</tr>")
         }
@@ -275,6 +282,36 @@ const getDetallesPedidos1 = (id) => { // SIRVE PARA MOSTRAR LA TABLA DENTRO DEL 
 
         let listDetallesPedido = res.listDetallesPedido;
         let table = $("#mostrarProductos");
+        
+        for (let i = 0; i < listDetallesPedido.length; i++) {
+            let precioTotal = listDetallesPedido[i].price * listDetallesPedido[i].cantUnidades;
+
+            table.append(
+                "<tr>" +
+                "<td>" + (i+1) + "</td>" +
+                "<td>" + listDetallesPedido[i].name + "</td>" +
+                "<td>" + listDetallesPedido[i].cantUnidades + "</td>" +
+                "<td>" + listDetallesPedido[i].price + "</td>" +
+                "<td>" +  precioTotal + "</td>" +
+                // "<td>" + '<button onclick="getIdPedido(' + listDetallesPedido[i].id + ');" type="button" class="btn btn-success text-dark" data-bs-toggle="modal" data-bs-target="#detallesPedido"> <i class="fa fa-plus infoBtn" aria-hidden="true"></i></button> </td>' +
+               "</tr>")
+        }
+    });
+};
+
+const getDetallesPedidos1VistaOrders = (id) => { // SIRVE PARA MOSTRAR LA TABLA DENTRO DEL MODAL; ES DECIR, ES LA TABLA QUE MUESTRA LOS PRODUCTOS AGREGADOS
+    var id = document.getElementById('id_pedidoDetails').value;
+    console.log("pruebaaaaa")
+    console.log(id)
+    $.ajax({
+        type: 'GET',
+        headers: { "Accept": "application/json" },
+        url: 'http://localhost:4000/pedido/pedidosDetallesTabla/' + id
+    }).done(res => {
+        console.log(res.listDetallesPedido);
+
+        let listDetallesPedido = res.listDetallesPedido;
+        let table = $("#mostrarProductosLista");
         
         for (let i = 0; i < listDetallesPedido.length; i++) {
             let precioTotal = listDetallesPedido[i].price * listDetallesPedido[i].cantUnidades;

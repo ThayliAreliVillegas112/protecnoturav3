@@ -125,7 +125,27 @@
          </div>
        </section>
 
-
+ <!-- MODAL HACER CHECK  PEDIDO-->
+ <div class="modal fade" id="checkPedidoGranel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Realización de check al pedido</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="javascript:void(0);" onsubmit="checkPedidoGranel();">
+              <div class="modal-body">
+                  <input type="hidden" id="id_checkPedidoGranel">
+                  <label>¿Desea finalizar el pedido?</label>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-danger">Check</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
        <!--MODAL AGREGAR PRODUCTOS A UN PEDIDO-->
        <div class="modal fade" id="detallesPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
         <div class="modal-dialog modal-lg" >
@@ -161,7 +181,7 @@
 
                   <div class="row justify-content-center" style="margin-top: 30px;">
                             <div class="col-10">
-                              <table class="table table-hover" id="mostrarProductos">
+                              <table class="table table-hover" id="mostrarProductosG">
                                   <thead>
                                     <tr>
                                       <th scope="col">#</th>
@@ -190,6 +210,9 @@
           </div>
         </div>
       </div>
+
+
+     
 
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous"></script>

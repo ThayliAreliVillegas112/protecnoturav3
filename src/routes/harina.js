@@ -49,10 +49,10 @@ router.get('/:id', async (req, res) =>{
 });
 
 router.post('/create', async (req, res)=> {
-    const { nameH } = req.body;
+    const { nameH, stockH } = req.body;
 
     const harina ={
-        nameH 
+        nameH, stockH 
     };
 
     await pool.query('INSERT INTO harina set ?', [harina]);
@@ -80,9 +80,9 @@ router.post('/createMaterialProcesado', async (req, res)=> {
 
 router.post('/update/:id', async (req, res)=>{
     const { id } = req.params;
-    const { nameH } = req.body;
+    const { nameH, stockH } = req.body;
 
-    const harina = { nameH };
+    const harina = { nameH, stockH };
 
      await pool.query('UPDATE harina SET ? WHERE id = ?', [harina, id]);
         res.json({

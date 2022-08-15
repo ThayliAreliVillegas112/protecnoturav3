@@ -100,11 +100,11 @@ const getMateriaPrima = () => {  //Obtiene todos los registros que se tienen de 
         let table = $("#materiaPrimaTable");
         
         for (let i = 0; i < listMateria.length; i++) {
-            stock = registerStock()
-            console.log(stock)
-            console.log("este de arriba es el stock")
-            if(stock == null){
+            
+            if(listMateria[i].stock == null){
                 stock = "0"
+            }else{
+                stock = listMateria[i].stock
             }
             table.append(
                 "<tr>" +
@@ -133,6 +133,7 @@ function registerMateriaPrima (){
     console.log("si entra para el llenado")
     let nameM = document.getElementById('nameMRe').value;
     let pricePublic = document.getElementById('pricePublicRe').value;
+    let stock = document.getElementById('stockMP').value;
         
 if (nameM == "") {
     Swal.fire({
@@ -160,7 +161,7 @@ if (nameM == "") {
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:4000/materiaP/create',
-                data: { nameM, pricePublic}
+                data: { nameM, pricePublic, stock}
                 }).done(res => {
                 console.log(res)
                 console.log("Si registra")
@@ -196,34 +197,24 @@ if (nameM == "") {
     })
 }};
 
-const registerStock = async id =>{
+// const registerStock = async id =>{
     
-    // console.log("si entra para el llenado")
-    // document.getElementById("id_nombreMP").value = id;
-    // // let stock = document.getElementById('cantidad').value;
-    // console.log("*******")
-    //     console.log(id)
-    //     console.log(".......")
-    //         $.ajax({
-    //             type: 'GET',
-    //             url: 'http://localhost:4000/materiaP/stock' + id,
-    //             }).done(res => {
-    //             console.log(res)
-    //             console.log("Si muestra")
-    //             if (res.status === 200) {
-    //                 console.log("si muestra el stock")
-    //             } else {
-    //                 console.log("No esta registrando ni madres")
-    //             }
-        
-    // })
-    return await $.ajax({
-        type: 'GET',
-        url: 'http://localhost:4000/materiaP/stock/' + id
-    }).done(res => res);
-};
+//     // return await $.ajax({
+//     //     type: 'GET',
+//     //     url: 'http://localhost:4000/materiaP/stock/' + id
+//     // }).done(res => res);
+//     // console.log(res.listStock);
+//     return await $.ajax({
+//         type: 'GET',
+//         headers: { "Accept": "application/json" },
+//         url: 'http://localhost:4000/materiaP/stock/' + id
+//     }).done(res => {
+//         console.log(res.listStock);
 
-registerStock()
+//     });
+// };
+
+// registerStock()
 
 
 function registerCompra (){
@@ -359,6 +350,7 @@ function updateNamePrice (){
     var id = document.getElementById('id_updateNP').value;
     let nameM = document.getElementById('nameM_up').value;
     let pricePublic = document.getElementById('pricePublic_up').value;
+    let stock = document.getElementById('stockMP_up').value;
     console.log(id);
 if (nameM == "") {
     Swal.fire({
@@ -374,7 +366,7 @@ if (nameM == "") {
     })
 }else{
     swalWithBootstrapButtons.fire({
-        title: 'Estás seguro de realizar el registro?',
+        title: '¿Estás seguro de realizar la modificación?',
         text: "Te sugerimos que revises la información antes de registrar",
         icon: 'warning',
         showCancelButton: true,
@@ -386,7 +378,7 @@ if (nameM == "") {
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:4000/materiaP/update/' + id,
-                data: { nameM, pricePublic}
+                data: { nameM, pricePublic, stock}
                 }).done(res => {
                 console.log(res)
                 console.log("Si registra")

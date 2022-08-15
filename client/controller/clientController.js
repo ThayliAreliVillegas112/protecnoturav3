@@ -259,7 +259,7 @@ if (name == "") {
     })
 }else{
     swalWithBootstrapButtons.fire({
-        title: 'Estás seguro de realizar los cambios?',
+        title: '¿Estás seguro de realizar los cambios?',
         text: "Te sugerimos que revises la información antes de registrar",
         icon: 'warning',
         showCancelButton: true,
