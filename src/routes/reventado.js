@@ -24,6 +24,17 @@ router.get('/usado', async (req, res) => { // SERVICIO PARA REGRESAR TODOS LOS R
     console.log(listUsado);
 })
 
+router.get('/vista', async (req, res) => { //MUESTRA SOLO EL NOMBRE Y STOCK DE LA PRIMERA VISTA DEL AMARANTO REVENTADO
+    let listReventado = await pool.query('SELECT * FROM amareventado');
+    
+    res.json({
+        status: 200,
+        message: "Se ha listado correctamente el nombre y stock del amaranto reventado",
+        listReventado: listReventado
+    });
+    console.log(listReventado);
+})
+
 router.get('/matPrima', async (req, res) => {
     let listReventado = await pool.query('SELECT id FROM materiaPrima where nameM = "Amaranto" or nameM = "amaranto" or nameM="AMARANTO"');
     
@@ -52,6 +63,16 @@ router.get('/usado2/:id', async (req, res) =>{
         status: 200,
         message: "Se ha encontrado el registro del amaranto reventado selecionado a usar",
         listUsado: listUsado
+    });
+});
+
+router.get('/stock/:id', async (req, res) =>{
+    const { id } = req.params;
+    let listReventado = await pool.query('SELECT * FROM amareventado WHERE id = ?', [id]);
+    res.json({
+        status: 200,
+        message: "Se ha encontrado el stock del amaranto reventado",
+        listReventado: listReventado
     });
 });
 
@@ -85,7 +106,20 @@ router.post('/createUsado', async (req, res)=> {
     });
 });
 
+router.post('/update/:id', async (req, res)=>{
+    const { id } = req.params;
+    // var dateUpdate = new Date().toISOString();
+    const { stockAma } = req.body;
 
+    const stockAmaranto = { stockAma };
+
+     await pool.query('UPDATE amareventado SET ? WHERE id = ?', [stockAmaranto, id]);
+        res.json({
+            status: 200,
+            message: "Se ha actualizado el stock correctamente del amaranto reventado",
+            stockAmaranto: stockAmaranto
+        });
+});
 // -------------------------------------
 
 

@@ -414,7 +414,7 @@ if (product_id == "") {
     })
 }else{
     swalWithBootstrapButtons.fire({
-        title: 'Estás seguro de realizar el registro?',
+        title: '¿Estás seguro de realizar el registro?',
         text: "Una vez que se agregue el producto debe tener cuidado de no duplicarlo",
         icon: 'warning',
         showCancelButton: true,
@@ -435,17 +435,8 @@ if (product_id == "") {
                         'Se ha registrado el detalle del pedido exitosamente',
                         'success'
                     )
-                    // getDetallesPedidos1()
-                    // localStorage.removeItem("precioT");
                     let formulario = document.getElementById('addProduct'); 
                     formulario.reset()
-                    // setTimeout(function() {
-                    //     localStorage.removeItem("precioT");
-                    //     let refresh = document.getElementById('addProduct');
-                    //      refresh= location.reload();
-                         
-                    //     location.reload(true);
-                    // }, 3000);
                 } else {
                     Swal.fire({
                         title: "Hubo un problema al registrar",
@@ -488,7 +479,7 @@ if (datePago == "") {
     })
 }else{
     swalWithBootstrapButtons.fire({
-        title: 'Estás seguro de confirmar el registro?',
+        title: '¿Estás seguro de confirmar el registro?',
         text: "Te sugerimos que revises la información antes de registrar",
         icon: 'warning',
         showCancelButton: true,

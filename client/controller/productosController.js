@@ -133,7 +133,7 @@ if (name == "") {
     })
 }else{
     swalWithBootstrapButtons.fire({
-        title: 'Estás seguro de realizar el registro?',
+        title: '¿Estás seguro de realizar el registro?',
         text: "Te sugerimos que revises la información antes de registrar",
         icon: 'warning',
         showCancelButton: true,
@@ -151,7 +151,7 @@ if (name == "") {
                 if (res.status === 200) {
                     swalWithBootstrapButtons.fire(
                         'Registro exitoso',
-                        'Se ha registrado producto exitosamente',
+                        'Se ha registrado el producto exitosamente',
                         'success'
                     )
                     let formulario = document.getElementById('formuProduct'); 

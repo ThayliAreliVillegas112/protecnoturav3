@@ -12,6 +12,12 @@ const getMezclaUsadoById = async id => {
     }).done(res => res);
 };
 
+const getStockById = async id => {
+    return await $.ajax({
+        type: 'GET',
+        url: 'http://localhost:4000/mezcla/stockM/' + id
+    }).done(res => res);
+};
 
 const getInfoMezcla = async id => {
     var mezcla = await getMezclaById(id);
@@ -33,6 +39,13 @@ const getInfoMezclaUsado = async id => {
     console.log("si esta entrando");
 };
 
+const getInfoUpdateStockM = async id => {
+    let stockM = await getStockById(id);
+
+    document.getElementById('id_updateStockMezcla').value = id;
+    document.getElementById('stockMezcla_up').value = stockM.listMezcla[0].stockMezcla;
+    console.log(stockM);
+};
 
 const getRegistrosMezcla = () => {
     $.ajax({
@@ -58,6 +71,39 @@ const getRegistrosMezcla = () => {
     });
 };
 getRegistrosMezcla();
+
+const getNameStockM = () => {
+    $.ajax({
+        type: 'GET',
+        headers: { "Accept": "application/json" },
+        url: 'http://localhost:4000/mezcla/vistaM'
+    }).done(res => {
+        console.log(res.listMezcla);
+
+        let listMezcla = res.listMezcla;
+        let table = $("#tablaVistaMezcla");
+        let stock;
+        for (let i = 0; i < listMezcla.length; i++) {
+            if(listMezcla[i].stockMezcla == null){
+                stock = 0
+            }else{
+                stock = listMezcla[i].stockMezcla
+            }
+            table.append(
+                "<tr>" +
+                "<td>" + (i+1) + "</td>" + 
+                "<td>" + listMezcla[i].nameMezcla +"</td>" +
+                "<td>" + stock +"</td>" +
+                "<td>" + '<button onclick="getInfoUpdateStockM(' + listMezcla[i].id + ');" type="button" class="btn btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#updateStockMezcla"><i class="fa fa-pen" aria-hidden="true"></i></button> </td>' +
+                "<td>" + '<a href="historyMezcla.html" class="btn btn-info" role="button" ><i class="fa fa-list" aria-hidden="true"></i></a> </td>' +
+                "</tr>")
+                
+        }
+        
+    });
+};
+
+getNameStockM()
 
 const getRegistrosMezclaUsado = () => {
     $.ajax({
@@ -249,7 +295,73 @@ if (cantidadMezcla == ""){
 }};
 
 
+function updateStockM (){
+    event.preventDefault();
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    console.log(id);
+    console.log("Si entra para hacer los cambios");
+    var id = document.getElementById('id_updateStockMezcla').value;
+    let stockMezcla = document.getElementById('stockMezcla_up').value;
+    console.log(id);
 
+if (stockMezcla == "") {
+    Swal.fire({
+        title: "Completa el campo STOCK",
+        confirmButtonText: "Aceptar",
+        icon: "error",
+    })
+}else{
+    swalWithBootstrapButtons.fire({
+        title: 'Estás seguro de actualizar el stock?',
+        text: "Te sugerimos que revises la información antes de registrar",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+    }).then ((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:4000/mezcla/updateM/' + id,
+                data: {stockMezcla}
+            }).done(res => {
+                console.log(res)
+                if (res.status === 200) {
+                    swalWithBootstrapButtons.fire(
+                        'Modificación exitosa',
+                        'Se ha modificado el stock exitosamente',
+                        'success'
+                    )
+                    $('#updateStockMezcla'). modal('hide');  //Sirve para cerrar el modal despues de aceptar la eliminación
+                    setTimeout(function() {
+                        let refresh = document.getElementById('tablaVistaMezcla');
+                        refresh= location.reload();
+                         location.reload(true);
+                    }, 2000);
+                } else {
+                    Swal.fire({
+                        title: "Hubo un problema al modificar",
+                        confirmButtonText: "Aceptar",
+                        icon: "error",
+                    });
+                }
+            });
+        }else{
+            swalWithBootstrapButtons.fire(
+                'Acción cancelada',
+                'No se ha realizado la modificación',
+                'error'
+            )
+        }
+    })
+}};
 
 function doSearch()
     {

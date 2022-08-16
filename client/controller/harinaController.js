@@ -112,7 +112,7 @@ function registerHarina (){
         buttonsStyling: false
     })
     let nameH = document.getElementById('nameHarinaRe').value;
-    let stockH = document.getElementById('stockH').value;
+    let stockH = document.getElementById('stockHa').value;
 if (nameH == "") {
     Swal.fire({
         title: "Completa el campo NOMBRE",
@@ -121,7 +121,7 @@ if (nameH == "") {
     })
 }else{
     swalWithBootstrapButtons.fire({
-        title: 'Estás seguro de realizar el registro?',
+        title: '¿Estás seguro de realizar el registro?',
         text: "Te sugerimos que revises la información antes de registrar",
         icon: 'warning',
         showCancelButton: true,

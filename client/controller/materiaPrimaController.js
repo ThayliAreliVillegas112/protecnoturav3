@@ -59,6 +59,7 @@ const getInfoUpdateMP = async id => { //Obtiene la información para el modal de
     document.getElementById('id_updateNP').value = id;
     document.getElementById('nameM_up').value = materiaPrima.listMateria[0].nameM;
     document.getElementById('pricePublic_up').value = materiaPrima.listMateria[0].pricePublic;
+    document.getElementById('stockMP_up').value = materiaPrima.listMateria[0].stock;
     
     console.log(materiaPrima);
 
@@ -237,7 +238,7 @@ function registerCompra (){
     let quienEntrego = document.getElementById('quienEntrego').value;
     let quienRecibio = document.getElementById('quienRecibio').value;
     let materiaPrima_id = document.getElementById('id_nombreMP').value;
-    registerStock();
+    // registerStock();
 if (lote == "") {
     Swal.fire({
         title: "Completa el campo LOTE",

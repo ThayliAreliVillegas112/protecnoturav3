@@ -97,14 +97,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="disabledTextInput" class="form-label">Nombre</label>
+                            <label for="disabledTextInput" class="form-label">Nombre <span class="text-danger">*</span></label>
                             <input type="text" id="nameHarinaRe" class="form-control" placeholder="Harina de amaranto" >
                         </div>
                     </div> 
                     <div class="col-md-6">
                       <div class="form-group">
                           <label for="disabledTextInput" class="form-label">Stock (kg)</label>
-                          <input type="text" id="stockH" class="form-control" placeholder="32.5" >
+                          <input type="text" id="stockHa" class="form-control" placeholder="32.5" >
                       </div>
                   </div>                   
                 </div>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="disabledTextInput" class="form-label">Materia prima</label>
+                                <label for="disabledTextInput" class="form-label">Materia prima <span class="text-danger">*</span></label>
                                 <select class="form-select" aria-label="Default select example" id="mySelect2">
                                     <option value="">Seleccione una opción</option>
                                   </select>
@@ -148,19 +148,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="disabledTextInput" class="form-label">Cantidad de materia prima (kg)</label>
+                                <label for="disabledTextInput" class="form-label">Cantidad de materia prima (kg) <span class="text-danger">*</span></label>
                                 <input type="number" id="cantMP" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="disabledTextInput" class="form-label">Cantidad de harina hecha (kg)</label>
+                                <label for="disabledTextInput" class="form-label">Cantidad harina hecha (kg) <span class="text-danger">*</span></label>
                                 <input type="number" id="cantHarina" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="disabledTextInput" class="form-label">Fecha</label>
+                                <label for="disabledTextInput" class="form-label">Fecha <span class="text-danger">*</span></label>
                                 <input type="date" id="dateRe" class="form-control">
                             </div>
                         </div>
@@ -190,13 +190,13 @@
                   <input type="hidden" id="id_updateHarina">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="disabledTextInput" class="form-label">Nombre</label>
+                            <label for="disabledTextInput" class="form-label">Nombre <span class="text-danger">*</span></label>
                             <input type="text" id="nameHarina_up" class="form-control" placeholder="Harina de amaranto" >
                         </div>
                     </div> 
                     <div class="col-md-6">
                       <div class="form-group">
-                          <label for="disabledTextInput" class="form-label">Stock (kg)</label>
+                          <label for="disabledTextInput" class="form-label">Stock (kg) <span class="text-danger">*</span></label>
                           <input type="text" id="stockH_up" class="form-control" placeholder="32.6" step="0.01">
                       </div>
                   </div>                    
@@ -218,6 +218,5 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
         <script src="../controller/harinaController.js"></script>
-        <script src="../main.js"></script>
     </body>
 </html>

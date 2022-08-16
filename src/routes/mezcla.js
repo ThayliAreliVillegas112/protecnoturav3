@@ -24,6 +24,17 @@ router.get('/usadoM', async (req, res) => { // SERVICIO PARA REGRESAR TODOS LOS 
     console.log(listUsado);
 })
 
+router.get('/vistaM', async (req, res) => { //MUESTRA SOLO EL NOMBRE Y STOCK DE LA PRIMERA VISTA DE LA MEZCLA
+    let listMezcla = await pool.query('SELECT * FROM mezclaname');
+    
+    res.json({
+        status: 200,
+        message: "Se ha listado correctamente el nombre y stock de la mezcla",
+        listMezcla: listMezcla
+    });
+    console.log(listMezcla);
+})
+
 router.get('/:id', async (req, res) =>{
     const { id } = req.params;
     let listMezcla = await pool.query('SELECT * FROM mezcla WHERE id = ?', [id]);
@@ -41,6 +52,16 @@ router.get('/usadoM2/:id', async (req, res) =>{
         status: 200,
         message: "Se ha encontrado el registro de la mezcla selecionado a usar",
         listUsado: listUsado
+    });
+});
+
+router.get('/stockM/:id', async (req, res) =>{
+    const { id } = req.params;
+    let listMezcla = await pool.query('SELECT * FROM mezclaname WHERE id = ?', [id]);
+    res.json({
+        status: 200,
+        message: "Se ha encontrado el stock de la mezcla",
+        listMezcla: listMezcla
     });
 });
 
@@ -73,6 +94,20 @@ router.post('/createUsadoM', async (req, res)=> {
     });
 });
 
+router.post('/updateM/:id', async (req, res)=>{
+    const { id } = req.params;
+    // var dateUpdate = new Date().toISOString();
+    const { stockMezcla } = req.body;
+
+    const stockM = { stockMezcla };
+
+     await pool.query('UPDATE mezclaname SET ? WHERE id = ?', [stockM, id]);
+        res.json({
+            status: 200,
+            message: "Se ha actualizado el stock correctamente de la mezcla",
+            stockM: stockM
+        });
+});
 
 // -------------------------------------
 

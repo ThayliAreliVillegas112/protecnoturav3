@@ -5,6 +5,12 @@ const getReventadoById = async id => {
     }).done(res => res);
 };
 
+const getStockById = async id => {
+    return await $.ajax({
+        type: 'GET',
+        url: 'http://localhost:4000/reventado/stock/' + id
+    }).done(res => res);
+};
 const getReventadoUsadoById = async id => {
     return await $.ajax({
         type: 'GET',
@@ -12,6 +18,13 @@ const getReventadoUsadoById = async id => {
     }).done(res => res);
 };
 
+const getInfoUpdateStock = async id => {
+    let stockA = await getStockById(id);
+
+    document.getElementById('id_updateStockReventado').value = id;
+    document.getElementById('stockReventado_up').value = stockA.listReventado[0].stockAma;
+    console.log(stockA);
+};
 
 const getInfoReventado = async id => {
     var reventado = await getReventadoById(id);
@@ -59,6 +72,38 @@ const getRegistrosAmaranto = () => {
     });
 };
 getRegistrosAmaranto();
+
+const getNameStock = () => {
+    $.ajax({
+        type: 'GET',
+        headers: { "Accept": "application/json" },
+        url: 'http://localhost:4000/reventado/vista'
+    }).done(res => {
+        console.log(res.listReventado);
+
+        let listReventado = res.listReventado;
+        let table = $("#tablaVista");
+        let stock;
+        for (let i = 0; i < listReventado.length; i++) {
+            if(listReventado[i].stockAma == null){
+                stock = 0
+            }else{
+                stock = listReventado[i].stockAma
+            }
+            table.append(
+                "<tr>" +
+                "<td>" + (i+1) + "</td>" + 
+                "<td>" + listReventado[i].nameAmaranto +"</td>" +
+                "<td>" + stock +"</td>" +
+                "<td>" + '<button onclick="getInfoUpdateStock(' + listReventado[i].id + ');" type="button" class="btn btn-warning text-dark" data-bs-toggle="modal" data-bs-target="#updateStockReventado"><i class="fa fa-pen" aria-hidden="true"></i></button> </td>' +
+                "<td>" + '<a href="historyReventado.html" class="btn btn-info" role="button" ><i class="fa fa-list" aria-hidden="true"></i></a> </td>' +
+                "</tr>")
+                
+        }
+        
+    });
+};
+getNameStock();
 
 const getRegistrosAmarantoUsado = () => {
     $.ajax({
@@ -236,7 +281,73 @@ if (cantidadAmaranto == ""){
 }};
 
 
+function updateStock (){
+    event.preventDefault();
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    console.log(id);
+    console.log("Si entra para hacer los cambios");
+    var id = document.getElementById('id_updateStockReventado').value;
+    let stockAma = document.getElementById('stockReventado_up').value;
+    console.log(id);
 
+if (stockAma == "") {
+    Swal.fire({
+        title: "Completa el campo STOCK",
+        confirmButtonText: "Aceptar",
+        icon: "error",
+    })
+}else{
+    swalWithBootstrapButtons.fire({
+        title: 'Estás seguro de actualizar el stock?',
+        text: "Te sugerimos que revises la información antes de registrar",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+    }).then ((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:4000/reventado/update/' + id,
+                data: {stockAma}
+            }).done(res => {
+                console.log(res)
+                if (res.status === 200) {
+                    swalWithBootstrapButtons.fire(
+                        'Modificación exitosa',
+                        'Se ha modificado el stock exitosamente',
+                        'success'
+                    )
+                    $('#updateupdateStockReventadoNameH'). modal('hide');  //Sirve para cerrar el modal despues de aceptar la eliminación
+                    setTimeout(function() {
+                        let refresh = document.getElementById('tablaVista');
+                        refresh= location.reload();
+                         location.reload(true);
+                    }, 2000);
+                } else {
+                    Swal.fire({
+                        title: "Hubo un problema al modificar",
+                        confirmButtonText: "Aceptar",
+                        icon: "error",
+                    });
+                }
+            });
+        }else{
+            swalWithBootstrapButtons.fire(
+                'Acción cancelada',
+                'No se ha realizado la modificación',
+                'error'
+            )
+        }
+    })
+}};
 
 function doSearch()
     {
